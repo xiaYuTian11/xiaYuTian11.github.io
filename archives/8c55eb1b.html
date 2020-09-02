@@ -18,10 +18,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/themes/blue/pace-theme-loading-bar.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"xiayutian11.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"xiayutian11.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
   <meta name="description" content="概述​        Postgres 9.4（2014 年 12 月发布）引入了一项称为逻辑复制（Logical Replication）的新功能。逻辑复制允许从数据库实时流式传输到外部系统的更改。物理复制和逻辑复制的区别在于逻辑复制以逻辑格式发送数据，而物理复制以二进制格式发送数据。">
@@ -109,6 +111,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -128,11 +131,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -235,11 +265,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>​        Postgres 9.4（2014 年 12 月发布）引入了一项称为逻辑复制（Logical Replication）的新功能。逻辑复制允许从数据库实时流式传输到外部系统的更改。物理复制和逻辑复制的区别在于逻辑复制以逻辑格式发送数据，而物理复制以二进制格式发送数据。</p>
+        <h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a> 概述 </h2><p>​        Postgres 9.4（2014 年 12 月发布）引入了一项称为逻辑复制（Logical Replication）的新功能。逻辑复制允许从数据库实时流式传输到外部系统的更改。物理复制和逻辑复制的区别在于逻辑复制以逻辑格式发送数据，而物理复制以二进制格式发送数据。</p>
 <a id="more"></a>
 
 <p>​        详细介绍查看官方文档：<span class="exturl" data-url="aHR0cHM6Ly9qZGJjLnBvc3RncmVzcWwub3JnL2RvY3VtZW50YXRpb24vaGVhZC9yZXBsaWNhdGlvbi5odG1s">https://jdbc.postgresql.org/documentation/head/replication.html<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>​        Postgresql 要想使用逻辑复制必须先将 postgresql. conf 中 wal_level 配置为 logical, 相应的 max_wal_senders 复制使用者的数量要合理配置，max_replication_slots 要使用逻辑复制必须大于 0；</p>
+<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        Postgresql 要想使用逻辑复制必须先将 postgresql. conf 中 wal_level 配置为 logical, 相应的 max_wal_senders 复制使用者的数量要合理配置，max_replication_slots 要使用逻辑复制必须大于 0；</p>
 <p><code>postgresql. conf</code></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wal_level = logical</span><br><span class="line">max_wal_senders = 8</span><br><span class="line">max_replication_slots = 2</span><br></pre></td></tr></table></figure>
 
@@ -248,7 +278,7 @@
 
 
 
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>​          逻辑复制使用复制槽在服务器上保留 WAL 日志，并定义用于将 WAL 日志解码为所需格式的解码插件，例如，您可以将更改解码为 json 等格式。这里方便演示使用 test_decoding 插件进行解码。</p>
+<h2 id="使用"><a href="# 使用" class="headerlink" title="使用"></a> 使用 </h2><p>​          逻辑复制使用复制槽在服务器上保留 WAL 日志，并定义用于将 WAL 日志解码为所需格式的解码插件，例如，您可以将更改解码为 json 等格式。这里方便演示使用 test_decoding 插件进行解码。</p>
 <p>​          更多插件查看：<span class="exturl" data-url="aHR0cHM6Ly93aWtpLnBvc3RncmVzcWwub3JnL3dpa2kvTG9naWNhbF9EZWNvZGluZ19QbHVnaW5z">https://wiki.postgresql.org/wiki/Logical_Decoding_Plugins<i class="fa fa-external-link-alt"></i></span></p>
 <p>** 针对整个数据库的逻辑复制 **</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> <span class="keyword">throws</span> SQLException, InterruptedException </span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/dev&quot;</span>;</span><br><span class="line">        Properties props = <span class="keyword">new</span> Properties ();</span><br><span class="line">        PGProperty.USER.set (props, <span class="string">&quot;postgres&quot;</span>);</span><br><span class="line">        PGProperty.PASSWORD.set (props, <span class="string">&quot;20191809&quot;</span>);</span><br><span class="line">        PGProperty.ASSUME_MIN_SERVER_VERSION.set (props, <span class="string">&quot;9.4&quot;</span>);</span><br><span class="line">        PGProperty.REPLICATION.set (props, <span class="string">&quot;database&quot;</span>);</span><br><span class="line">        PGProperty.PREFER_QUERY_MODE.set (props, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Connection con = DriverManager.getConnection (url, props);</span><br><span class="line">        PGConnection replConnection = con.unwrap (PGConnection.class);</span><br><span class="line">        Statement statement = con.createStatement ();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 删除复制槽 </span></span><br><span class="line">        <span class="comment">//replConnection.getReplicationAPI ().dropReplicationSlot (&quot;demo_logical_slot&quot;);</span></span><br><span class="line">        </span><br><span class="line">    	<span class="comment">// 创建 demo_logical_slot</span></span><br><span class="line">        replConnection.getReplicationAPI ()</span><br><span class="line">                .createReplicationSlot ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withOutputPlugin (<span class="string">&quot;test_decoding&quot;</span>)</span><br><span class="line">                .make ();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建逻辑复制流，设置超时时间 </span></span><br><span class="line">        PGReplicationStream stream = replConnection.getReplicationAPI ()</span><br><span class="line">                .replicationStream ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;include-xids&quot;</span>, <span class="keyword">false</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;skip-empty-xacts&quot;</span>, <span class="keyword">true</span>)</span><br><span class="line">                .withStatusInterval (<span class="number">20</span>, TimeUnit.SECONDS)</span><br><span class="line">                .start ();</span><br><span class="line">        </span><br><span class="line">       <span class="comment">// 更改数据库表数据，这里可以获取数据 </span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">//non blocking receive message</span></span><br><span class="line">            ByteBuffer msg = stream.readPending ();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep (<span class="number">10L</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> offset = msg.arrayOffset ();</span><br><span class="line">            <span class="keyword">byte</span>[] source = msg.array ();</span><br><span class="line">            <span class="keyword">int</span> length = source.length - offset;</span><br><span class="line">            <span class="keyword">final</span> String s = <span class="keyword">new</span> String (source, offset, length);</span><br><span class="line">            System.out.println (s);</span><br><span class="line">            <span class="comment">//feedback</span></span><br><span class="line">            <span class="comment">// 反馈服务器，向服务器提供已成功接收并应用于消费者的日志序列编号 （LSN）</span></span><br><span class="line">            stream.setAppliedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">            stream.setFlushedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -256,20 +286,20 @@
 
 
 <p>** 只针对指定表的逻辑复制 **</p>
-<p>步骤：</p>
-<p>1。创建针对表创建订阅，及接收数据的操作类型</p>
+<p> 步骤：</p>
+<p>1。创建针对表创建订阅，及接收数据的操作类型 </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> PUBLICATION YOUR_PUBLICATION_NAME) <span class="keyword">FOR</span> <span class="keyword">TABLE</span> YOUR_TABLE_NAME <span class="keyword">WITH</span> (publish = <span class="string">&#x27;insert,update,delete&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>2。设置表同步数据的字段，最后 FULL 参数可变。</p>
-<p>参照官方文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xMC9zcWwtYWx0ZXJ0YWJsZS5odG1sI1NRTC1DUkVBVEVUQUJMRS1SRVBMSUNBLUlERU5USVRZ">https://www.postgresql.org/docs/10/sql-altertable.html#SQL-CREATETABLE-REPLICA-IDENTITY<i class="fa fa-external-link-alt"></i></span></p>
+<p> 参照官方文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xMC9zcWwtYWx0ZXJ0YWJsZS5odG1sI1NRTC1DUkVBVEVUQUJMRS1SRVBMSUNBLUlERU5USVRZ">https://www.postgresql.org/docs/10/sql-altertable.html#SQL-CREATETABLE-REPLICA-IDENTITY<i class="fa fa-external-link-alt"></i></span></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLE_NAME REPLICA <span class="keyword">IDENTITY</span> <span class="keyword">FULL</span></span><br></pre></td></tr></table></figure>
 
-<p>3。创建复制槽</p>
+<p>3。创建复制槽 </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE_REPLICATION_SLOT  YOUR_SOLT_NAME  有效期  LOGICAL 解码插件名称；</span><br></pre></td></tr></table></figure>
 
 <p>4。获取 PGReplicationStream，同上。</p>
-<p>详情参照官方文档地址：<span class="exturl" data-url="aHR0cDovL3d3dy5wb3N0Z3Jlcy5jbi9kb2NzLzExL3NxbC1jcmVhdGVwdWJsaWNhdGlvbi5odG1s">http://www.postgres.cn/docs/11/sql-createpublication.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>解码插件可以参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RlYmV6aXVtL2RlYmV6aXVt">https://github.com/debezium/debezium<i class="fa fa-external-link-alt"></i></span></p>
+<p> 详情参照官方文档地址：<span class="exturl" data-url="aHR0cDovL3d3dy5wb3N0Z3Jlcy5jbi9kb2NzLzExL3NxbC1jcmVhdGVwdWJsaWNhdGlvbi5odG1s">http://www.postgres.cn/docs/11/sql-createpublication.html<i class="fa fa-external-link-alt"></i></span></p>
+<p> 解码插件可以参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RlYmV6aXVtL2RlYmV6aXVt">https://github.com/debezium/debezium<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
@@ -361,7 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text"> 概述 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text"> 配置 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text"> 使用 </span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -523,6 +553,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -568,9 +602,11 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 </script>
 
   
-  <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
 </body>
 </html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+
 
 
