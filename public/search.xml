@@ -114,29 +114,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring Boot logback.xml 读取 yml 中配置</title>
-    <url>/archives/cc464ebf.html</url>
-    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​            最近部署 Spring Boot 项目时发现在 logback.xml 中配置的日志存放路径为相对路径，导致我以不同的方式启动项目时，日志文件生成的目录是不一致的，所以决定将 logback.xml 中的日志文件存放路径改为相对路径，但是在使用中发现 logback.xml 不能读取到 yml 中的属性。</p>
-<a id="more"></a>
-
-<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        由于 Spring Boot 时加载顺序是先加载 logback.xml, 在加载 application.yml, 最后在加载 logback-spring.xml 文件。所以直接在 logback.xml 中配置读取 yml 是不行的。下面说下解决方案。</p>
-<h3 id="1- 在 -yml- 文件中配置日志存放路径"><a href="#1- 在 -yml- 文件中配置日志存放路径" class="headerlink" title="1. 在 yml 文件中配置日志存放路径"></a>1. 在 yml 文件中配置日志存放路径 </h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">log:</span></span><br><span class="line">  <span class="attr">file:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/usr/soft/test/logs</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2- 将 -logback-xml- 名称改为 -logback-spring-xml"><a href="#2- 将 -logback-xml- 名称改为 -logback-spring-xml" class="headerlink" title="2. 将 logback.xml 名称改为 logback-spring.xml"></a>2. 将 logback.xml 名称改为 logback-spring.xml</h3><h3 id="3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置"><a href="#3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置" class="headerlink" title="3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置"></a>3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">&quot;context&quot;</span> <span class="attr">name</span>=<span class="string">&quot;logPath&quot;</span> <span class="attr">source</span>=<span class="string">&quot;log.file.path&quot;</span> <span class="attr">defaultValue</span>=<span class="string">&quot;logs&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4- 使用配置"><a href="#4- 使用配置" class="headerlink" title="4. 使用配置"></a>4. 使用配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;logPath&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>​        配置完成后，部署时就可以在启动前修改 application.yml 文件中的相关配置，达到自定义的目的。</p>
-]]></content>
-      <tags>
-        <tag>SpringBoot,logback</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ServiceLoader (SPI)</title>
     <url>/archives/c575efb2.html</url>
     <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a>概述</h2><p>​        最近学习 Spring Boot 启动过程时，发现加载配置类时用到了 <code>java.util.ServiceLoader</code>，后来发现不止 Spring Boot 用到，其他很多框架，譬如 Dubbo，JDBC，日志框架等。</p>
@@ -192,6 +169,29 @@
 ]]></content>
       <tags>
         <tag>Jdk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Boot logback.xml 读取 yml 中配置</title>
+    <url>/archives/cc464ebf.html</url>
+    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​            最近部署 Spring Boot 项目时发现在 logback.xml 中配置的日志存放路径为相对路径，导致我以不同的方式启动项目时，日志文件生成的目录是不一致的，所以决定将 logback.xml 中的日志文件存放路径改为相对路径，但是在使用中发现 logback.xml 不能读取到 yml 中的属性。</p>
+<a id="more"></a>
+
+<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        由于 Spring Boot 时加载顺序是先加载 logback.xml, 在加载 application.yml, 最后在加载 logback-spring.xml 文件。所以直接在 logback.xml 中配置读取 yml 是不行的。下面说下解决方案。</p>
+<h3 id="1- 在 -yml- 文件中配置日志存放路径"><a href="#1- 在 -yml- 文件中配置日志存放路径" class="headerlink" title="1. 在 yml 文件中配置日志存放路径"></a>1. 在 yml 文件中配置日志存放路径 </h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">log:</span></span><br><span class="line">  <span class="attr">file:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/usr/soft/test/logs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2- 将 -logback-xml- 名称改为 -logback-spring-xml"><a href="#2- 将 -logback-xml- 名称改为 -logback-spring-xml" class="headerlink" title="2. 将 logback.xml 名称改为 logback-spring.xml"></a>2. 将 logback.xml 名称改为 logback-spring.xml</h3><h3 id="3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置"><a href="#3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置" class="headerlink" title="3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置"></a>3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">&quot;context&quot;</span> <span class="attr">name</span>=<span class="string">&quot;logPath&quot;</span> <span class="attr">source</span>=<span class="string">&quot;log.file.path&quot;</span> <span class="attr">defaultValue</span>=<span class="string">&quot;logs&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4- 使用配置"><a href="#4- 使用配置" class="headerlink" title="4. 使用配置"></a>4. 使用配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;logPath&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>​        配置完成后，部署时就可以在启动前修改 application.yml 文件中的相关配置，达到自定义的目的。</p>
+]]></content>
+      <tags>
+        <tag>SpringBoot,logback</tag>
       </tags>
   </entry>
   <entry>
