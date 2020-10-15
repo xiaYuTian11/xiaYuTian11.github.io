@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xiayutian11.github.io/archives/1f43d92b.html</loc>
+    
+    <lastmod>2020-10-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xiayutian11.github.io/archives/8b811d4f.html</loc>
     
     <lastmod>2020-10-15</lastmod>
@@ -130,7 +137,14 @@
   </url>
   
   <url>
-    <loc>https://xiayutian11.github.io/tags/logback/</loc>
+    <loc>https://xiayutian11.github.io/tags/UidGenerator/</loc>
+    <lastmod>2020-10-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiayutian11.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
     <lastmod>2020-10-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -145,6 +159,13 @@
   
   <url>
     <loc>https://xiayutian11.github.io/tags/SnowFlake/</loc>
+    <lastmod>2020-10-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiayutian11.github.io/tags/logback/</loc>
     <lastmod>2020-10-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
