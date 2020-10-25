@@ -95,13 +95,6 @@
   </url>
   
   <url>
-    <loc>https://xiayutian11.github.io/tags/PostgreSQL/</loc>
-    <lastmod>2020-10-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xiayutian11.github.io/tags/IO/</loc>
     <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
@@ -110,6 +103,13 @@
   
   <url>
     <loc>https://xiayutian11.github.io/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</loc>
+    <lastmod>2020-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiayutian11.github.io/tags/PostgreSQL/</loc>
     <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
