@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xiayutian11.github.io/resource/index.html</loc>
+    
+    <lastmod>2020-10-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xiayutian11.github.io/archives/1f43d92b.html</loc>
     
     <lastmod>2020-10-15</lastmod>
@@ -51,13 +58,6 @@
   </url>
   
   <url>
-    <loc>https://xiayutian11.github.io/resource/index.html</loc>
-    
-    <lastmod>2020-10-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://xiayutian11.github.io/archives/1f0b7068.html</loc>
     
     <lastmod>2020-09-10</lastmod>
@@ -74,7 +74,7 @@
 
   <url>
     <loc>https://xiayutian11.github.io/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -82,91 +82,91 @@
   
   <url>
     <loc>https://xiayutian11.github.io/tags/MQ/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/ActiveMQ/</loc>
-    <lastmod>2020-10-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiayutian11.github.io/tags/IO/</loc>
-    <lastmod>2020-10-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiayutian11.github.io/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/PostgreSQL/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiayutian11.github.io/tags/IO/</loc>
+    <lastmod>2020-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiayutian11.github.io/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</loc>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/Jdk/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/SPI/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/SpringBoot/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/UidGenerator/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8FID/</loc>
-    <lastmod>2020-10-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiayutian11.github.io/tags/SnowFlake/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xiayutian11.github.io/tags/logback/</loc>
-    <lastmod>2020-10-15</lastmod>
+    <lastmod>2020-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiayutian11.github.io/tags/SnowFlake/</loc>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
