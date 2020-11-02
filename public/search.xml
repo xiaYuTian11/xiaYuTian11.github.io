@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>InputStream 中文乱码</title>
+    <url>/archives/fe88a97f.html</url>
+    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​        最近进行项目重构，发现之前文件读取重构之后出现数据乱码。最后发现是因为字节流的问题。</p>
+<a id="more"></a>
+
+<h2 id="字节流"><a href="# 字节流" class="headerlink" title="字节流"></a> 字节流 </h2><p>​         字节流是按照字节为基本单位来读取数据的 ，中文是占两个字节的，所以读取的时候可能出现丢失的情况。</p>
+<p>​        读取文件 garbledTest.txt  内容如下 </p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"> 滕王阁序 </span><br><span class="line">　　 豫章故郡，洪都新府。星分翼轸 (zhěn)，地接衡庐。襟三江而带五湖，控蛮荆而引瓯（ōu）越。物华天宝，龙光射牛斗之墟；人杰地灵，徐孺下陈蕃 (fān) 之榻。雄州雾列，俊采星驰，台隍 (huáng) 枕夷夏之交，宾主尽东南之美。都督阎公之雅望，棨 (qǐ) 戟遥临；宇文新州之懿 (yì) 范，襜 (chān) 帷 (wéi) 暂驻。十旬休假，胜友如云；千里逢迎，高朋满座。腾蛟起凤，孟学士之词宗；紫电清霜，王将军之武库。家君作宰，路出名区；童子何知，躬逢胜饯。</span><br><span class="line">　　时维九月，序属三秋。潦（lǎo）水尽而寒潭清，烟光凝而暮山紫。俨 (yǎn) 骖騑 (cān fēi) 于上路，访风景于崇阿 (ē)。临帝子之长洲，得天人之旧馆。层峦耸翠，上出重霄；飞阁流（一作 翔）丹，下临无地。鹤汀（tīng）凫 (fú) 渚（zhǔ），穷岛屿之萦 (yíng) 回；桂殿兰宫，即（一作 列）冈峦之体势。</span><br><span class="line">　　披绣闼（tà），俯雕甍 (méng)。山原旷其盈视，川泽纡 (yū) 其骇瞩。闾 (lǘ) 阎 (yán) 扑地，钟鸣鼎食之家；舸（gě) 舰弥津，青雀黄龙之舳（zhú）。云销雨霁 (jì)，彩彻区明（或作 虹销雨霁，彩彻云衢 qú）。落霞与孤鹜 (wù) 齐飞，秋水共长天一色。渔舟唱晚，响穷彭蠡（l ǐ）之滨；雁阵惊寒，声断衡阳之浦。</span><br><span class="line">　　遥襟甫畅，逸兴遄 (chuán) 飞。爽籁发而清风生，纤歌凝而白云遏 (è)。睢 (suī) 园绿竹，气凌彭泽之樽；邺 (yè) 水朱华，光照临川之笔。四美具，二难并。穷睇眄 (dì miǎn) 于中天，极娱游于暇日。天高地迥 (jiǒng)，觉宇宙之无穷；兴尽悲来，识盈虚之有数。望长安于日下，目吴会（kuài）于云间。地势极而南溟 (míng) 深，天柱高而北辰远。关山难越，谁悲失路之人；萍水相逢，尽是他乡之客。怀帝阍 (hūn) 而不见，奉宣室以何年。</span><br><span class="line">　　嗟 (jiē) 乎！时运不齐，命途多舛 (chuǎn)；冯唐易老，李广难封。屈贾谊（yì）于长沙，非无圣主；窜梁鸿于海曲，岂乏明时？所赖君子见机，达人知命。老当益壮，宁移白首之心？穷且益坚，不坠青云之志。酌贪泉而觉爽，处涸辙（hé zhé）以犹欢。北海虽赊（shē），扶摇可接；东隅 (yú) 已逝，桑榆非晚。孟尝高洁，空余报国之情；阮籍猖狂，岂效穷途之哭！</span><br><span class="line">　　勃，三尺微命，一介书生。无路请缨，等终军之弱冠（guàn）；有怀投笔，慕宗悫（què）之长风。舍簪（zān）笏（hù）于百龄，奉晨昏于万里。非谢家之宝树，接孟氏之芳邻。他日趋庭，叨 (tāo) 陪鲤对；今兹捧袂 (mèi)，喜托龙门。杨意不逢，抚凌云而自惜；钟期既遇，奏流水以何惭？</span><br><span class="line">　　呜呼！胜地不常，盛筵 (yán) 难再；兰亭已矣，梓 (zǐ) 泽丘墟。临别赠言，幸承恩于伟饯；登高作赋，是所望于群公。敢竭鄙怀，恭疏短引；一言均赋，四韵俱成。请洒潘江，各倾陆海云尔。　</span><br><span class="line">　　滕王高阁临江渚，佩玉鸣鸾罢歌舞。</span><br><span class="line">　　画栋朝飞南浦云，珠帘暮卷西山雨。</span><br><span class="line">　　闲云潭影日悠悠，物换星移几度秋。</span><br><span class="line">　　阁中帝子今何在？槛外长江空自流。</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 缓存字节流 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bufferedInputStreamTest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> URL url = <span class="keyword">this</span>.getClass ().getClassLoader ().getResource (<span class="string">&quot;io/garbledTest.txt&quot;</span>);</span><br><span class="line">    File file = <span class="keyword">new</span> File (url.getPath ());</span><br><span class="line">    BufferedInputStream bips = <span class="keyword">new</span> BufferedInputStream (<span class="keyword">new</span> FileInputStream (file));</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder ();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> ((n = bips.read ()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        bips.read (bytes, <span class="number">0</span>, n);</span><br><span class="line">        sb.append (<span class="keyword">new</span> String (bytes));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println (sb.toString ());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        字节流读取会出现乱码。</p>
+<p>​                                                                                                                                                                                              </p>
+<h2 id="字符流"><a href="# 字符流" class="headerlink" title="字符流"></a> 字符流 </h2><pre><code>     字符流是按照字符为基本单位来读取数据的，占两个字节，这种情况就不会出现中文乱码。</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 字符流 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readerTest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> URL url = <span class="keyword">this</span>.getClass ().getClassLoader ().getResource (<span class="string">&quot;io/garbledTest.txt&quot;</span>);</span><br><span class="line">    File file = <span class="keyword">new</span> File (url.getPath ());</span><br><span class="line">    BufferedReader br = <span class="keyword">new</span> BufferedReader (<span class="keyword">new</span> InputStreamReader (<span class="keyword">new</span> FileInputStream (file)));</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder ();</span><br><span class="line">    <span class="keyword">while</span> (br.ready ()) &#123;</span><br><span class="line">        sb.append (br.readLine ());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println (sb.toString ());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​            字符流则不会乱码。</p>
+<p> 源码参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL2Jsb2dfZGVtby9ibG9iL21hc3Rlci9qYXZhOC9zcmMvdGVzdC9qYXZhL2NvbS9zdW5ueWRheS9pby9HYXJibGVkVGVzdC5qYXZh">https://github.com/xiaYuTian11/blog_demo/blob/master/java8/src/test/java/com/sunnyday/io/GarbledTest.java<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <tags>
+        <tag>IO</tag>
+        <tag>中文乱码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ActiveMQ Connection Parameters</title>
     <url>/archives/75c25f59.html</url>
     <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a>背景</h2><p>​          最近项目需要搭建 ActiveMQ 进行消息传输，但是在使用过程中发现与 ActiveMQ 长时间连接，但是没进行消息传输，或者网络波动等情况会造成连接挂掉的情况，由于 ActiveMQ 是支持断线重连机制，在此记录下使用到的几个配置及其中的一个坑。</p>
@@ -45,33 +72,6 @@
       </tags>
   </entry>
   <entry>
-    <title>InputStream 中文乱码</title>
-    <url>/archives/fe88a97f.html</url>
-    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​        最近进行项目重构，发现之前文件读取重构之后出现数据乱码。最后发现是因为字节流的问题。</p>
-<a id="more"></a>
-
-<h2 id="字节流"><a href="# 字节流" class="headerlink" title="字节流"></a> 字节流 </h2><p>​         字节流是按照字节为基本单位来读取数据的 ，中文是占两个字节的，所以读取的时候可能出现丢失的情况。</p>
-<p>​        读取文件 garbledTest.txt  内容如下 </p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"> 滕王阁序 </span><br><span class="line">　　 豫章故郡，洪都新府。星分翼轸 (zhěn)，地接衡庐。襟三江而带五湖，控蛮荆而引瓯（ōu）越。物华天宝，龙光射牛斗之墟；人杰地灵，徐孺下陈蕃 (fān) 之榻。雄州雾列，俊采星驰，台隍 (huáng) 枕夷夏之交，宾主尽东南之美。都督阎公之雅望，棨 (qǐ) 戟遥临；宇文新州之懿 (yì) 范，襜 (chān) 帷 (wéi) 暂驻。十旬休假，胜友如云；千里逢迎，高朋满座。腾蛟起凤，孟学士之词宗；紫电清霜，王将军之武库。家君作宰，路出名区；童子何知，躬逢胜饯。</span><br><span class="line">　　时维九月，序属三秋。潦（lǎo）水尽而寒潭清，烟光凝而暮山紫。俨 (yǎn) 骖騑 (cān fēi) 于上路，访风景于崇阿 (ē)。临帝子之长洲，得天人之旧馆。层峦耸翠，上出重霄；飞阁流（一作 翔）丹，下临无地。鹤汀（tīng）凫 (fú) 渚（zhǔ），穷岛屿之萦 (yíng) 回；桂殿兰宫，即（一作 列）冈峦之体势。</span><br><span class="line">　　披绣闼（tà），俯雕甍 (méng)。山原旷其盈视，川泽纡 (yū) 其骇瞩。闾 (lǘ) 阎 (yán) 扑地，钟鸣鼎食之家；舸（gě) 舰弥津，青雀黄龙之舳（zhú）。云销雨霁 (jì)，彩彻区明（或作 虹销雨霁，彩彻云衢 qú）。落霞与孤鹜 (wù) 齐飞，秋水共长天一色。渔舟唱晚，响穷彭蠡（l ǐ）之滨；雁阵惊寒，声断衡阳之浦。</span><br><span class="line">　　遥襟甫畅，逸兴遄 (chuán) 飞。爽籁发而清风生，纤歌凝而白云遏 (è)。睢 (suī) 园绿竹，气凌彭泽之樽；邺 (yè) 水朱华，光照临川之笔。四美具，二难并。穷睇眄 (dì miǎn) 于中天，极娱游于暇日。天高地迥 (jiǒng)，觉宇宙之无穷；兴尽悲来，识盈虚之有数。望长安于日下，目吴会（kuài）于云间。地势极而南溟 (míng) 深，天柱高而北辰远。关山难越，谁悲失路之人；萍水相逢，尽是他乡之客。怀帝阍 (hūn) 而不见，奉宣室以何年。</span><br><span class="line">　　嗟 (jiē) 乎！时运不齐，命途多舛 (chuǎn)；冯唐易老，李广难封。屈贾谊（yì）于长沙，非无圣主；窜梁鸿于海曲，岂乏明时？所赖君子见机，达人知命。老当益壮，宁移白首之心？穷且益坚，不坠青云之志。酌贪泉而觉爽，处涸辙（hé zhé）以犹欢。北海虽赊（shē），扶摇可接；东隅 (yú) 已逝，桑榆非晚。孟尝高洁，空余报国之情；阮籍猖狂，岂效穷途之哭！</span><br><span class="line">　　勃，三尺微命，一介书生。无路请缨，等终军之弱冠（guàn）；有怀投笔，慕宗悫（què）之长风。舍簪（zān）笏（hù）于百龄，奉晨昏于万里。非谢家之宝树，接孟氏之芳邻。他日趋庭，叨 (tāo) 陪鲤对；今兹捧袂 (mèi)，喜托龙门。杨意不逢，抚凌云而自惜；钟期既遇，奏流水以何惭？</span><br><span class="line">　　呜呼！胜地不常，盛筵 (yán) 难再；兰亭已矣，梓 (zǐ) 泽丘墟。临别赠言，幸承恩于伟饯；登高作赋，是所望于群公。敢竭鄙怀，恭疏短引；一言均赋，四韵俱成。请洒潘江，各倾陆海云尔。　</span><br><span class="line">　　滕王高阁临江渚，佩玉鸣鸾罢歌舞。</span><br><span class="line">　　画栋朝飞南浦云，珠帘暮卷西山雨。</span><br><span class="line">　　闲云潭影日悠悠，物换星移几度秋。</span><br><span class="line">　　阁中帝子今何在？槛外长江空自流。</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 缓存字节流 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bufferedInputStreamTest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> URL url = <span class="keyword">this</span>.getClass ().getClassLoader ().getResource (<span class="string">&quot;io/garbledTest.txt&quot;</span>);</span><br><span class="line">    File file = <span class="keyword">new</span> File (url.getPath ());</span><br><span class="line">    BufferedInputStream bips = <span class="keyword">new</span> BufferedInputStream (<span class="keyword">new</span> FileInputStream (file));</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder ();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> ((n = bips.read ()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        bips.read (bytes, <span class="number">0</span>, n);</span><br><span class="line">        sb.append (<span class="keyword">new</span> String (bytes));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println (sb.toString ());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​        字节流读取会出现乱码。</p>
-<p>​                                                                                                                                                                                              </p>
-<h2 id="字符流"><a href="# 字符流" class="headerlink" title="字符流"></a> 字符流 </h2><pre><code>     字符流是按照字符为基本单位来读取数据的，占两个字节，这种情况就不会出现中文乱码。</code></pre>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 字符流 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readerTest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> URL url = <span class="keyword">this</span>.getClass ().getClassLoader ().getResource (<span class="string">&quot;io/garbledTest.txt&quot;</span>);</span><br><span class="line">    File file = <span class="keyword">new</span> File (url.getPath ());</span><br><span class="line">    BufferedReader br = <span class="keyword">new</span> BufferedReader (<span class="keyword">new</span> InputStreamReader (<span class="keyword">new</span> FileInputStream (file)));</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder ();</span><br><span class="line">    <span class="keyword">while</span> (br.ready ()) &#123;</span><br><span class="line">        sb.append (br.readLine ());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println (sb.toString ());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​            字符流则不会乱码。</p>
-<p> 源码参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL2Jsb2dfZGVtby9ibG9iL21hc3Rlci9qYXZhOC9zcmMvdGVzdC9qYXZhL2NvbS9zdW5ueWRheS9pby9HYXJibGVkVGVzdC5qYXZh">https://github.com/xiaYuTian11/blog_demo/blob/master/java8/src/test/java/com/sunnyday/io/GarbledTest.java<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <tags>
-        <tag>IO</tag>
-        <tag>中文乱码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Logback 配置模版</title>
     <url>/archives/c096da2d.html</url>
     <content><![CDATA[<p>​        官方文档地址：<span class="exturl" data-url="aHR0cDovL2xvZ2JhY2sucW9zLmNoL2RvY3VtZW50YXRpb24uaHRtbA==">http://logback.qos.ch/documentation.html<i class="fa fa-external-link-alt"></i></span></p>
@@ -85,50 +85,6 @@
 ]]></content>
       <tags>
         <tag>日志，logback</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PostgreSQL Logical Replication (逻辑复制)</title>
-    <url>/archives/8c55eb1b.html</url>
-    <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a> 概述 </h2><p>​        Postgres 9.4（2014 年 12 月发布）引入了一项称为逻辑复制（Logical Replication）的新功能。逻辑复制允许从数据库实时流式传输到外部系统的更改。物理复制和逻辑复制的区别在于逻辑复制以逻辑格式发送数据，而物理复制以二进制格式发送数据。</p>
-<a id="more"></a>
-
-<p>​        详细介绍查看官方文档：<span class="exturl" data-url="aHR0cHM6Ly9qZGJjLnBvc3RncmVzcWwub3JnL2RvY3VtZW50YXRpb24vaGVhZC9yZXBsaWNhdGlvbi5odG1s">https://jdbc.postgresql.org/documentation/head/replication.html<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        Postgresql 要想使用逻辑复制必须先将 postgresql. conf 中 wal_level 配置为 logical, 相应的 max_wal_senders 复制使用者的数量要合理配置，max_replication_slots 要使用逻辑复制必须大于 0；</p>
-<p><code>postgresql. conf</code></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">wal_level = logical</span><br><span class="line">max_wal_senders = 8</span><br><span class="line">max_replication_slots = 2</span><br></pre></td></tr></table></figure>
-
-<p><code>pg_hba. conf</code></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">local   replication   all                   trust</span><br><span class="line">host    replication   all   127.0.0.1/32    md5</span><br><span class="line">host    replication   all   ::1/128         md5</span><br><span class="line">host	all			  all   0.0.0.0/0		md5  </span><br><span class="line"># 更多配置含义查看：http://shouce.jb51.net/postgresql9_4_4/auth-pg-hba-conf.html</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用"><a href="# 使用" class="headerlink" title="使用"></a> 使用 </h2><p>​          逻辑复制使用复制槽在服务器上保留 WAL 日志，并定义用于将 WAL 日志解码为所需格式的解码插件，例如，您可以将更改解码为 json 等格式。这里方便演示使用 test_decoding 插件进行解码。</p>
-<p>​          更多插件查看：<span class="exturl" data-url="aHR0cHM6Ly93aWtpLnBvc3RncmVzcWwub3JnL3dpa2kvTG9naWNhbF9EZWNvZGluZ19QbHVnaW5z">https://wiki.postgresql.org/wiki/Logical_Decoding_Plugins<i class="fa fa-external-link-alt"></i></span></p>
-<p>** 针对整个数据库的逻辑复制 **</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> <span class="keyword">throws</span> SQLException, InterruptedException </span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/dev&quot;</span>;</span><br><span class="line">        Properties props = <span class="keyword">new</span> Properties ();</span><br><span class="line">        PGProperty.USER.set (props, <span class="string">&quot;postgres&quot;</span>);</span><br><span class="line">        PGProperty.PASSWORD.set (props, <span class="string">&quot;20191809&quot;</span>);</span><br><span class="line">        PGProperty.ASSUME_MIN_SERVER_VERSION.set (props, <span class="string">&quot;9.4&quot;</span>);</span><br><span class="line">        PGProperty.REPLICATION.set (props, <span class="string">&quot;database&quot;</span>);</span><br><span class="line">        PGProperty.PREFER_QUERY_MODE.set (props, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Connection con = DriverManager.getConnection (url, props);</span><br><span class="line">        PGConnection replConnection = con.unwrap (PGConnection.class);</span><br><span class="line">        Statement statement = con.createStatement ();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 删除复制槽 </span></span><br><span class="line">        <span class="comment">//replConnection.getReplicationAPI ().dropReplicationSlot (&quot;demo_logical_slot&quot;);</span></span><br><span class="line">        </span><br><span class="line">    	<span class="comment">// 创建 demo_logical_slot</span></span><br><span class="line">        replConnection.getReplicationAPI ()</span><br><span class="line">                .createReplicationSlot ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withOutputPlugin (<span class="string">&quot;test_decoding&quot;</span>)</span><br><span class="line">                .make ();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建逻辑复制流，设置超时时间 </span></span><br><span class="line">        PGReplicationStream stream = replConnection.getReplicationAPI ()</span><br><span class="line">                .replicationStream ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;include-xids&quot;</span>, <span class="keyword">false</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;skip-empty-xacts&quot;</span>, <span class="keyword">true</span>)</span><br><span class="line">                .withStatusInterval (<span class="number">20</span>, TimeUnit.SECONDS)</span><br><span class="line">                .start ();</span><br><span class="line">        </span><br><span class="line">       <span class="comment">// 更改数据库表数据，这里可以获取数据 </span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">//non blocking receive message</span></span><br><span class="line">            ByteBuffer msg = stream.readPending ();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep (<span class="number">10L</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> offset = msg.arrayOffset ();</span><br><span class="line">            <span class="keyword">byte</span>[] source = msg.array ();</span><br><span class="line">            <span class="keyword">int</span> length = source.length - offset;</span><br><span class="line">            <span class="keyword">final</span> String s = <span class="keyword">new</span> String (source, offset, length);</span><br><span class="line">            System.out.println (s);</span><br><span class="line">            <span class="comment">//feedback</span></span><br><span class="line">            <span class="comment">// 反馈服务器，向服务器提供已成功接收并应用于消费者的日志序列编号 （LSN）</span></span><br><span class="line">            stream.setAppliedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">            stream.setFlushedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>** 只针对指定表的逻辑复制 **</p>
-<p> 步骤：</p>
-<p>1。创建针对表创建订阅，及接收数据的操作类型 </p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> PUBLICATION YOUR_PUBLICATION_NAME) <span class="keyword">FOR</span> <span class="keyword">TABLE</span> YOUR_TABLE_NAME <span class="keyword">WITH</span> (publish = <span class="string">&#x27;insert,update,delete&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>2。设置表同步数据的字段，最后 FULL 参数可变。</p>
-<p> 参照官方文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xMC9zcWwtYWx0ZXJ0YWJsZS5odG1sI1NRTC1DUkVBVEVUQUJMRS1SRVBMSUNBLUlERU5USVRZ">https://www.postgresql.org/docs/10/sql-altertable.html#SQL-CREATETABLE-REPLICA-IDENTITY<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLE_NAME REPLICA <span class="keyword">IDENTITY</span> <span class="keyword">FULL</span></span><br></pre></td></tr></table></figure>
-
-<p>3。创建复制槽 </p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">CREATE_REPLICATION_SLOT  YOUR_SOLT_NAME  有效期  LOGICAL 解码插件名称；</span><br></pre></td></tr></table></figure>
-
-<p>4。获取 PGReplicationStream，同上。</p>
-<p> 详情参照官方文档地址：<span class="exturl" data-url="aHR0cDovL3d3dy5wb3N0Z3Jlcy5jbi9kb2NzLzExL3NxbC1jcmVhdGVwdWJsaWNhdGlvbi5odG1s">http://www.postgres.cn/docs/11/sql-createpublication.html<i class="fa fa-external-link-alt"></i></span></p>
-<p> 解码插件可以参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RlYmV6aXVtL2RlYmV6aXVt">https://github.com/debezium/debezium<i class="fa fa-external-link-alt"></i></span></p>
-<p> 完整代码可以查看： <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL3Bvc3RncmVzcWwtbWVzc2FnZQ==">https://github.com/xiaYuTian11/postgresql-message<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <tags>
-        <tag>PostgreSQL</tag>
       </tags>
   </entry>
   <entry>
@@ -191,6 +147,74 @@
       </tags>
   </entry>
   <entry>
+    <title>PostgreSQL Logical Replication (逻辑复制)</title>
+    <url>/archives/8c55eb1b.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a> 概述 </h2><p>​        Postgres 9.4（2014 年 12 月发布）引入了一项称为逻辑复制（Logical Replication）的新功能。逻辑复制允许从数据库实时流式传输到外部系统的更改。物理复制和逻辑复制的区别在于逻辑复制以逻辑格式发送数据，而物理复制以二进制格式发送数据。</p>
+<a id="more"></a>
+
+<p>​        详细介绍查看官方文档：<span class="exturl" data-url="aHR0cHM6Ly9qZGJjLnBvc3RncmVzcWwub3JnL2RvY3VtZW50YXRpb24vaGVhZC9yZXBsaWNhdGlvbi5odG1s">https://jdbc.postgresql.org/documentation/head/replication.html<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        Postgresql 要想使用逻辑复制必须先将 postgresql. conf 中 wal_level 配置为 logical, 相应的 max_wal_senders 复制使用者的数量要合理配置，max_replication_slots 要使用逻辑复制必须大于 0；</p>
+<p><code>postgresql. conf</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">wal_level = logical</span><br><span class="line">max_wal_senders = 8</span><br><span class="line">max_replication_slots = 2</span><br></pre></td></tr></table></figure>
+
+<p><code>pg_hba. conf</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">local   replication   all                   trust</span><br><span class="line">host    replication   all   127.0.0.1/32    md5</span><br><span class="line">host    replication   all   ::1/128         md5</span><br><span class="line">host	all			  all   0.0.0.0/0		md5  </span><br><span class="line"># 更多配置含义查看：http://shouce.jb51.net/postgresql9_4_4/auth-pg-hba-conf.html</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用"><a href="# 使用" class="headerlink" title="使用"></a> 使用 </h2><p>​          逻辑复制使用复制槽在服务器上保留 WAL 日志，并定义用于将 WAL 日志解码为所需格式的解码插件，例如，您可以将更改解码为 json 等格式。这里方便演示使用 test_decoding 插件进行解码。</p>
+<p>​          更多插件查看：<span class="exturl" data-url="aHR0cHM6Ly93aWtpLnBvc3RncmVzcWwub3JnL3dpa2kvTG9naWNhbF9EZWNvZGluZ19QbHVnaW5z">https://wiki.postgresql.org/wiki/Logical_Decoding_Plugins<i class="fa fa-external-link-alt"></i></span></p>
+<p>** 针对整个数据库的逻辑复制 **</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> <span class="keyword">throws</span> SQLException, InterruptedException </span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/dev&quot;</span>;</span><br><span class="line">        Properties props = <span class="keyword">new</span> Properties ();</span><br><span class="line">        PGProperty.USER.set (props, <span class="string">&quot;postgres&quot;</span>);</span><br><span class="line">        PGProperty.PASSWORD.set (props, <span class="string">&quot;20191809&quot;</span>);</span><br><span class="line">        PGProperty.ASSUME_MIN_SERVER_VERSION.set (props, <span class="string">&quot;9.4&quot;</span>);</span><br><span class="line">        PGProperty.REPLICATION.set (props, <span class="string">&quot;database&quot;</span>);</span><br><span class="line">        PGProperty.PREFER_QUERY_MODE.set (props, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Connection con = DriverManager.getConnection (url, props);</span><br><span class="line">        PGConnection replConnection = con.unwrap (PGConnection.class);</span><br><span class="line">        Statement statement = con.createStatement ();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 删除复制槽 </span></span><br><span class="line">        <span class="comment">//replConnection.getReplicationAPI ().dropReplicationSlot (&quot;demo_logical_slot&quot;);</span></span><br><span class="line">        </span><br><span class="line">    	<span class="comment">// 创建 demo_logical_slot</span></span><br><span class="line">        replConnection.getReplicationAPI ()</span><br><span class="line">                .createReplicationSlot ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withOutputPlugin (<span class="string">&quot;test_decoding&quot;</span>)</span><br><span class="line">                .make ();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建逻辑复制流，设置超时时间 </span></span><br><span class="line">        PGReplicationStream stream = replConnection.getReplicationAPI ()</span><br><span class="line">                .replicationStream ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;include-xids&quot;</span>, <span class="keyword">false</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;skip-empty-xacts&quot;</span>, <span class="keyword">true</span>)</span><br><span class="line">                .withStatusInterval (<span class="number">20</span>, TimeUnit.SECONDS)</span><br><span class="line">                .start ();</span><br><span class="line">        </span><br><span class="line">       <span class="comment">// 更改数据库表数据，这里可以获取数据 </span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">//non blocking receive message</span></span><br><span class="line">            ByteBuffer msg = stream.readPending ();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep (<span class="number">10L</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> offset = msg.arrayOffset ();</span><br><span class="line">            <span class="keyword">byte</span>[] source = msg.array ();</span><br><span class="line">            <span class="keyword">int</span> length = source.length - offset;</span><br><span class="line">            <span class="keyword">final</span> String s = <span class="keyword">new</span> String (source, offset, length);</span><br><span class="line">            System.out.println (s);</span><br><span class="line">            <span class="comment">//feedback</span></span><br><span class="line">            <span class="comment">// 反馈服务器，向服务器提供已成功接收并应用于消费者的日志序列编号 （LSN）</span></span><br><span class="line">            stream.setAppliedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">            stream.setFlushedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>** 只针对指定表的逻辑复制 **</p>
+<p> 步骤：</p>
+<p>1。创建针对表创建订阅，及接收数据的操作类型 </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> PUBLICATION YOUR_PUBLICATION_NAME) <span class="keyword">FOR</span> <span class="keyword">TABLE</span> YOUR_TABLE_NAME <span class="keyword">WITH</span> (publish = <span class="string">&#x27;insert,update,delete&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>2。设置表同步数据的字段，最后 FULL 参数可变。</p>
+<p> 参照官方文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xMC9zcWwtYWx0ZXJ0YWJsZS5odG1sI1NRTC1DUkVBVEVUQUJMRS1SRVBMSUNBLUlERU5USVRZ">https://www.postgresql.org/docs/10/sql-altertable.html#SQL-CREATETABLE-REPLICA-IDENTITY<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLE_NAME REPLICA <span class="keyword">IDENTITY</span> <span class="keyword">FULL</span></span><br></pre></td></tr></table></figure>
+
+<p>3。创建复制槽 </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">CREATE_REPLICATION_SLOT  YOUR_SOLT_NAME  有效期  LOGICAL 解码插件名称；</span><br></pre></td></tr></table></figure>
+
+<p>4。获取 PGReplicationStream，同上。</p>
+<p> 详情参照官方文档地址：<span class="exturl" data-url="aHR0cDovL3d3dy5wb3N0Z3Jlcy5jbi9kb2NzLzExL3NxbC1jcmVhdGVwdWJsaWNhdGlvbi5odG1s">http://www.postgres.cn/docs/11/sql-createpublication.html<i class="fa fa-external-link-alt"></i></span></p>
+<p> 解码插件可以参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RlYmV6aXVtL2RlYmV6aXVt">https://github.com/debezium/debezium<i class="fa fa-external-link-alt"></i></span></p>
+<p> 完整代码可以查看： <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL3Bvc3RncmVzcWwtbWVzc2FnZQ==">https://github.com/xiaYuTian11/postgresql-message<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <tags>
+        <tag>PostgreSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Boot logback.xml 读取 yml 中配置</title>
+    <url>/archives/cc464ebf.html</url>
+    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​            最近部署 Spring Boot 项目时发现在 logback.xml 中配置的日志存放路径为相对路径，导致我以不同的方式启动项目时，日志文件生成的目录是不一致的，所以决定将 logback.xml 中的日志文件存放路径改为相对路径，但是在使用中发现 logback.xml 不能读取到 yml 中的属性。</p>
+<a id="more"></a>
+
+<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        由于 Spring Boot 时加载顺序是先加载 logback.xml, 在加载 application.yml, 最后在加载 logback-spring.xml 文件。所以直接在 logback.xml 中配置读取 yml 是不行的。下面说下解决方案。</p>
+<h3 id="1- 在 -yml- 文件中配置日志存放路径"><a href="#1- 在 -yml- 文件中配置日志存放路径" class="headerlink" title="1. 在 yml 文件中配置日志存放路径"></a>1. 在 yml 文件中配置日志存放路径 </h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">log:</span></span><br><span class="line">  <span class="attr">file:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/usr/soft/test/logs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2- 将 -logback-xml- 名称改为 -logback-spring-xml"><a href="#2- 将 -logback-xml- 名称改为 -logback-spring-xml" class="headerlink" title="2. 将 logback.xml 名称改为 logback-spring.xml"></a>2. 将 logback.xml 名称改为 logback-spring.xml</h3><h3 id="3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置"><a href="#3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置" class="headerlink" title="3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置"></a>3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">&quot;context&quot;</span> <span class="attr">name</span>=<span class="string">&quot;logPath&quot;</span> <span class="attr">source</span>=<span class="string">&quot;log.file.path&quot;</span> <span class="attr">defaultValue</span>=<span class="string">&quot;logs&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4- 使用配置"><a href="#4- 使用配置" class="headerlink" title="4. 使用配置"></a>4. 使用配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;logPath&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>​        配置完成后，部署时就可以在启动前修改 application.yml 文件中的相关配置，达到自定义的目的。</p>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>logback</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring Boot 2.x 整合 UidGenerator</title>
     <url>/archives/1f43d92b.html</url>
     <content><![CDATA[<h2 id="1- 概述"><a href="#1- 概述" class="headerlink" title="1. 概述"></a>1. 概述 </h2><p>​    SpringBoot 2.x 整合 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JhaWR1L3VpZC1nZW5lcmF0b3I="> 百度 UidGenerator<i class="fa fa-external-link-alt"></i></span>,MySQL 版本 10+。下载 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JhaWR1L3VpZC1nZW5lcmF0b3I=">百度 UidGenerator<i class="fa fa-external-link-alt"></i></span> 源码进行编译打成 Jar 引入整合工程。</p>
@@ -244,30 +268,6 @@
         <tag>UidGenerator</tag>
         <tag>分布式</tag>
         <tag>分布式ID</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring Boot logback.xml 读取 yml 中配置</title>
-    <url>/archives/cc464ebf.html</url>
-    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​            最近部署 Spring Boot 项目时发现在 logback.xml 中配置的日志存放路径为相对路径，导致我以不同的方式启动项目时，日志文件生成的目录是不一致的，所以决定将 logback.xml 中的日志文件存放路径改为相对路径，但是在使用中发现 logback.xml 不能读取到 yml 中的属性。</p>
-<a id="more"></a>
-
-<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        由于 Spring Boot 时加载顺序是先加载 logback.xml, 在加载 application.yml, 最后在加载 logback-spring.xml 文件。所以直接在 logback.xml 中配置读取 yml 是不行的。下面说下解决方案。</p>
-<h3 id="1- 在 -yml- 文件中配置日志存放路径"><a href="#1- 在 -yml- 文件中配置日志存放路径" class="headerlink" title="1. 在 yml 文件中配置日志存放路径"></a>1. 在 yml 文件中配置日志存放路径 </h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">log:</span></span><br><span class="line">  <span class="attr">file:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/usr/soft/test/logs</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2- 将 -logback-xml- 名称改为 -logback-spring-xml"><a href="#2- 将 -logback-xml- 名称改为 -logback-spring-xml" class="headerlink" title="2. 将 logback.xml 名称改为 logback-spring.xml"></a>2. 将 logback.xml 名称改为 logback-spring.xml</h3><h3 id="3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置"><a href="#3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置" class="headerlink" title="3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置"></a>3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">&quot;context&quot;</span> <span class="attr">name</span>=<span class="string">&quot;logPath&quot;</span> <span class="attr">source</span>=<span class="string">&quot;log.file.path&quot;</span> <span class="attr">defaultValue</span>=<span class="string">&quot;logs&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4- 使用配置"><a href="#4- 使用配置" class="headerlink" title="4. 使用配置"></a>4. 使用配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;logPath&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>​        配置完成后，部署时就可以在启动前修改 application.yml 文件中的相关配置，达到自定义的目的。</p>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-        <tag>logback</tag>
       </tags>
   </entry>
   <entry>
