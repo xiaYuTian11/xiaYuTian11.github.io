@@ -6,7 +6,7 @@
   <link href="https://xiayutian11.github.io/atom.xml" rel="self"/>
   
   <link href="https://xiayutian11.github.io/"/>
-  <updated>2020-11-01T14:39:13.216Z</updated>
+  <updated>2020-11-18T09:48:59.733Z</updated>
   <id>https://xiayutian11.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git 项目初始化并提交远程仓库</title>
+    <link href="https://xiayutian11.github.io/archives/456ca0f7.html"/>
+    <id>https://xiayutian11.github.io/archives/456ca0f7.html</id>
+    <published>2020-11-18T09:20:49.000Z</published>
+    <updated>2020-11-18T09:48:59.733Z</updated>
+    
+    <content type="html"><![CDATA[<p>​        在日常开发中经常用 Git 进行代码管理，通常在本地写完代码后需要提交到远程仓库，但是由于第一次关联的时候，可能本地与远程仓库的代码不一致，导致初次提交失败，在此记录下解决方案。</p><a id="more"></a><h5 id="1- 新建远程仓库，获得仓库地址"><a href="#1- 新建远程仓库，获得仓库地址" class="headerlink" title="1. 新建远程仓库，获得仓库地址"></a>1. 新建远程仓库，获得仓库地址 </h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/xiaYuTian11/learning_demo.git</span><br></pre></td></tr></table></figure><h5 id="2- 初始化本地仓库"><a href="#2- 初始化本地仓库" class="headerlink" title="2. 初始化本地仓库"></a>2. 初始化本地仓库 </h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><h5 id="3- 将忽略文件添加到 -gitignore"><a href="#3- 将忽略文件添加到 -gitignore" class="headerlink" title="3. 将忽略文件添加到 ==.gitignore=="></a>3. 将忽略文件添加到 ==.gitignore==</h5><h5 id="4- 添加需要版本控制的文件"><a href="#4- 添加需要版本控制的文件" class="headerlink" title="4. 添加需要版本控制的文件"></a>4. 添加需要版本控制的文件 </h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure><h5 id="5- 暂存本地代码"><a href="#5- 暂存本地代码" class="headerlink" title="5. 暂存本地代码"></a>5. 暂存本地代码 </h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot; 提交内容 & quot;</span>;</span><br></pre></td></tr></table></figure><h5 id="6- 关联远程仓库地址"><a href="#6- 关联远程仓库地址" class="headerlink" title="6. 关联远程仓库地址"></a>6. 关联远程仓库地址 </h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/xiaYuTian11/learning_demo.git</span><br></pre></td></tr></table></figure><h5 id="7- 拉取代码包括历史代码"><a href="#7- 拉取代码包括历史代码" class="headerlink" title="7. 拉取代码包括历史代码"></a>7. 拉取代码包括历史代码 </h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure><h5 id="8- 推送本地代码到远程仓库"><a href="#8- 推送本地代码到远程仓库" class="headerlink" title="8. 推送本地代码到远程仓库"></a>8. 推送本地代码到远程仓库 </h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure><p>​     完结㋡㋡ </p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;​        在日常开发中经常用 Git 进行代码管理，通常在本地写完代码后需要提交到远程仓库，但是由于第一次关联的时候，可能本地与远程仓库的代码不一致，导致初次提交失败，在此记录下解决方案。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Git" scheme="https://xiayutian11.github.io/tags/Git/"/>
+    
+    <category term="初始化" scheme="https://xiayutian11.github.io/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+    
+    <category term="远程仓库" scheme="https://xiayutian11.github.io/tags/%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Logback 配置模版</title>
