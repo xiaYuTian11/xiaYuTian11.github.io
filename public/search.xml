@@ -168,65 +168,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ServiceLoader (SPI)</title>
-    <url>/archives/c575efb2.html</url>
-    <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a>概述</h2><p>​        最近学习 Spring Boot 启动过程时，发现加载配置类时用到了 <code>java.util.ServiceLoader</code>，后来发现不止 Spring Boot 用到，其他很多框架，譬如 Dubbo，JDBC，日志框架等。</p>
-<p>​        SPI 的核心思想就是解耦。定则规则，然后其他人进行自定义实现规则。</p>
-<a id="more"></a>
-
-<h2 id="使用"><a href="# 使用" class="headerlink" title="使用"></a>使用 </h2><h3 id="代码"><a href="# 代码" class="headerlink" title="代码"></a> 代码</h3><p>SPI 的使用其实非常简单，主要分为以下几个步骤：</p>
-<ul>
-<li><p>定义一个接口及一个或多个实现类。</p>
-</li>
-<li><p>实现类必须带有无参构造方法。</p>
-</li>
-<li><p>在 resources 目录下创建 META-INF/services 目录，在 services 下创建一个以接口的全限定名为文件名的文件，将实现类的全限定名记录到这个文件里面，如果有多个实现类，直接换行进行记录，每行一个实现类。</p>
-</li>
-<li><p>通过 java.util.ServiceLoader load 方法进行加载。</p>
-</li>
-<li><p>  定义一个 Trip 接口：</p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Trip</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mode</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>  定义两个实现类：</p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.jdk.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunTrip</span> <span class="keyword">implements</span> <span class="title">Trip</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 跑步前进 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WalkTrip</span> <span class="keyword">implements</span> <span class="title">Trip</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 步行方式 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<pre><code>在 resources/META-INF/services 下创建名为 com.sunnyday.jdk.Trip 的文件，内容如下：
-
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">com.sunnyday.jdk.impl.RunTrip</span><br><span class="line">com.sunnyday.jdk.impl.WalkTrip</span><br></pre></td></tr></table></figure></code></pre>
-<h3 id="测试"><a href="# 测试" class="headerlink" title="测试"></a>测试 </h3><p> 执行测试方法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void test () &#123;</span><br><span class="line">      final ClassLoader classLoader &#x3D; this.getClass ().getClassLoader ();</span><br><span class="line">      final ServiceLoader&lt;Trip&gt; load &#x3D; ServiceLoader.load (Trip.class, classLoader);</span><br><span class="line">      for (Trip next : load) &#123;</span><br><span class="line">          next.mode ();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>控制台输出</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"> 跑步前进 </span><br><span class="line"> 步行方式 </span><br></pre></td></tr></table></figure>
-
-<h2 id="免配置文件"><a href="# 免配置文件" class="headerlink" title="免配置文件"></a>免配置文件</h2><p>​        auto-service 是 Google 提供的工具类，可以在实现类上添加 @AutoService 注解并指定接口，可以省去手动配置类全限定名的麻烦。</p>
-<p>代码：</p>
-<p>接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.google;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> TMW</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/9/8 15:58</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Weather</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">report</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>实现类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.google.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.auto.service.AutoService;</span><br><span class="line"><span class="keyword">import</span> com.sunnyday.google.Weather;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> TMW</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/9/8 15:59</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@AutoService (Weather.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SunnyWeather</span> <span class="keyword">implements</span> <span class="title">Weather</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">report</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 明天艳阳高照 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@AutoService (Weather.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RainWeather</span> <span class="keyword">implements</span> <span class="title">Weather</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">report</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 明天将要下雨 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">report</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> ClassLoader classLoader = <span class="keyword">this</span>.getClass ().getClassLoader ();</span><br><span class="line">    <span class="keyword">final</span> ServiceLoader&lt;Weather&gt; weathers = ServiceLoader.load (Weather.class, classLoader);</span><br><span class="line">    <span class="keyword">for</span> (Weather weather : weathers) &#123;</span><br><span class="line">        weather.report ();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>不用添加配置文件，运行测试类可以看到控制台一样可以正常输出。</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"> 明天将要下雨 </span><br><span class="line"> 明天艳阳高照 </span><br></pre></td></tr></table></figure>
-
-
-
-<p>源码参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL2Jsb2dfZGVtby90cmVlL21hc3Rlci9TUEk=">https://github.com/xiaYuTian11/blog_demo/tree/master/SPI<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <tags>
-        <tag>Jdk</tag>
-        <tag>SPI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PostgreSQL 数据备份还原与远程拷贝</title>
     <url>/archives/2e20b53e.html</url>
     <content><![CDATA[<p>​    PostgreSQL 数据库备份与还原命令。</p>
@@ -307,6 +248,65 @@
         <tag>远程拷贝，备份，还原，dump</tag>
         <tag>ssh</tag>
         <tag>scp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ServiceLoader (SPI)</title>
+    <url>/archives/c575efb2.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a>概述</h2><p>​        最近学习 Spring Boot 启动过程时，发现加载配置类时用到了 <code>java.util.ServiceLoader</code>，后来发现不止 Spring Boot 用到，其他很多框架，譬如 Dubbo，JDBC，日志框架等。</p>
+<p>​        SPI 的核心思想就是解耦。定则规则，然后其他人进行自定义实现规则。</p>
+<a id="more"></a>
+
+<h2 id="使用"><a href="# 使用" class="headerlink" title="使用"></a>使用 </h2><h3 id="代码"><a href="# 代码" class="headerlink" title="代码"></a> 代码</h3><p>SPI 的使用其实非常简单，主要分为以下几个步骤：</p>
+<ul>
+<li><p>定义一个接口及一个或多个实现类。</p>
+</li>
+<li><p>实现类必须带有无参构造方法。</p>
+</li>
+<li><p>在 resources 目录下创建 META-INF/services 目录，在 services 下创建一个以接口的全限定名为文件名的文件，将实现类的全限定名记录到这个文件里面，如果有多个实现类，直接换行进行记录，每行一个实现类。</p>
+</li>
+<li><p>通过 java.util.ServiceLoader load 方法进行加载。</p>
+</li>
+<li><p>  定义一个 Trip 接口：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Trip</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mode</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  定义两个实现类：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.jdk.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunTrip</span> <span class="keyword">implements</span> <span class="title">Trip</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 跑步前进 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WalkTrip</span> <span class="keyword">implements</span> <span class="title">Trip</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 步行方式 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<pre><code>在 resources/META-INF/services 下创建名为 com.sunnyday.jdk.Trip 的文件，内容如下：
+
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">com.sunnyday.jdk.impl.RunTrip</span><br><span class="line">com.sunnyday.jdk.impl.WalkTrip</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="测试"><a href="# 测试" class="headerlink" title="测试"></a>测试 </h3><p> 执行测试方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void test () &#123;</span><br><span class="line">      final ClassLoader classLoader &#x3D; this.getClass ().getClassLoader ();</span><br><span class="line">      final ServiceLoader&lt;Trip&gt; load &#x3D; ServiceLoader.load (Trip.class, classLoader);</span><br><span class="line">      for (Trip next : load) &#123;</span><br><span class="line">          next.mode ();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"> 跑步前进 </span><br><span class="line"> 步行方式 </span><br></pre></td></tr></table></figure>
+
+<h2 id="免配置文件"><a href="# 免配置文件" class="headerlink" title="免配置文件"></a>免配置文件</h2><p>​        auto-service 是 Google 提供的工具类，可以在实现类上添加 @AutoService 注解并指定接口，可以省去手动配置类全限定名的麻烦。</p>
+<p>代码：</p>
+<p>接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.google;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> TMW</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/9/8 15:58</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Weather</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">report</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>实现类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sunnyday.google.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.auto.service.AutoService;</span><br><span class="line"><span class="keyword">import</span> com.sunnyday.google.Weather;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> TMW</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/9/8 15:59</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@AutoService (Weather.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SunnyWeather</span> <span class="keyword">implements</span> <span class="title">Weather</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">report</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 明天艳阳高照 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@AutoService (Weather.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RainWeather</span> <span class="keyword">implements</span> <span class="title">Weather</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">report</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println (<span class="string">&quot; 明天将要下雨 & quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">report</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> ClassLoader classLoader = <span class="keyword">this</span>.getClass ().getClassLoader ();</span><br><span class="line">    <span class="keyword">final</span> ServiceLoader&lt;Weather&gt; weathers = ServiceLoader.load (Weather.class, classLoader);</span><br><span class="line">    <span class="keyword">for</span> (Weather weather : weathers) &#123;</span><br><span class="line">        weather.report ();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不用添加配置文件，运行测试类可以看到控制台一样可以正常输出。</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"> 明天将要下雨 </span><br><span class="line"> 明天艳阳高照 </span><br></pre></td></tr></table></figure>
+
+
+
+<p>源码参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL2Jsb2dfZGVtby90cmVlL21hc3Rlci9TUEk=">https://github.com/xiaYuTian11/blog_demo/tree/master/SPI<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <tags>
+        <tag>Jdk</tag>
+        <tag>SPI</tag>
       </tags>
   </entry>
   <entry>
