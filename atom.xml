@@ -3,11 +3,11 @@
   <title>SunnyDay</title>
   
   
-  <link href="https://xiayutian11.github.io/atom.xml" rel="self"/>
+  <link href="tanmw.top/atom.xml" rel="self"/>
   
-  <link href="https://xiayutian11.github.io/"/>
+  <link href="tanmw.top/"/>
   <updated>2020-11-26T14:25:32.479Z</updated>
-  <id>https://xiayutian11.github.io/</id>
+  <id>tanmw.top/</id>
   
   <author>
     <name>SunnyDay</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>PostgreSQL 数据备份还原与远程拷贝</title>
-    <link href="https://xiayutian11.github.io/archives/2e20b53e.html"/>
-    <id>https://xiayutian11.github.io/archives/2e20b53e.html</id>
+    <link href="tanmw.top/archives/2e20b53e.html"/>
+    <id>tanmw.top/archives/2e20b53e.html</id>
     <published>2020-11-26T11:54:00.000Z</published>
     <updated>2020-11-26T14:25:32.479Z</updated>
     
@@ -32,22 +32,22 @@
     
     
     
-    <category term="PostgreSQL" scheme="https://xiayutian11.github.io/tags/PostgreSQL/"/>
+    <category term="PostgreSQL" scheme="tanmw.top/tags/PostgreSQL/"/>
     
-    <category term="Linux" scheme="https://xiayutian11.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="tanmw.top/tags/Linux/"/>
     
-    <category term="远程拷贝，备份，还原，dump" scheme="https://xiayutian11.github.io/tags/%E8%BF%9C%E7%A8%8B%E6%8B%B7%E8%B4%9D%EF%BC%8C%E5%A4%87%E4%BB%BD%EF%BC%8C%E8%BF%98%E5%8E%9F%EF%BC%8Cdump/"/>
+    <category term="远程拷贝，备份，还原，dump" scheme="tanmw.top/tags/%E8%BF%9C%E7%A8%8B%E6%8B%B7%E8%B4%9D%EF%BC%8C%E5%A4%87%E4%BB%BD%EF%BC%8C%E8%BF%98%E5%8E%9F%EF%BC%8Cdump/"/>
     
-    <category term="ssh" scheme="https://xiayutian11.github.io/tags/ssh/"/>
+    <category term="ssh" scheme="tanmw.top/tags/ssh/"/>
     
-    <category term="scp" scheme="https://xiayutian11.github.io/tags/scp/"/>
+    <category term="scp" scheme="tanmw.top/tags/scp/"/>
     
   </entry>
   
   <entry>
     <title>Git 项目初始化并提交远程仓库</title>
-    <link href="https://xiayutian11.github.io/archives/456ca0f7.html"/>
-    <id>https://xiayutian11.github.io/archives/456ca0f7.html</id>
+    <link href="tanmw.top/archives/456ca0f7.html"/>
+    <id>tanmw.top/archives/456ca0f7.html</id>
     <published>2020-11-18T09:20:49.000Z</published>
     <updated>2020-11-26T14:26:52.018Z</updated>
     
@@ -59,18 +59,18 @@
     
     
     
-    <category term="Git" scheme="https://xiayutian11.github.io/tags/Git/"/>
+    <category term="Git" scheme="tanmw.top/tags/Git/"/>
     
-    <category term="初始化" scheme="https://xiayutian11.github.io/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+    <category term="初始化" scheme="tanmw.top/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
     
-    <category term="远程仓库" scheme="https://xiayutian11.github.io/tags/%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
+    <category term="远程仓库" scheme="tanmw.top/tags/%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>Logback 配置模版</title>
-    <link href="https://xiayutian11.github.io/archives/c096da2d.html"/>
-    <id>https://xiayutian11.github.io/archives/c096da2d.html</id>
+    <link href="tanmw.top/archives/c096da2d.html"/>
+    <id>tanmw.top/archives/c096da2d.html</id>
     <published>2020-11-01T14:20:38.000Z</published>
     <updated>2020-12-15T09:18:08.307Z</updated>
     
@@ -82,14 +82,14 @@
     
     
     
-    <category term="日志，logback" scheme="https://xiayutian11.github.io/tags/%E6%97%A5%E5%BF%97%EF%BC%8Clogback/"/>
+    <category term="日志，logback" scheme="tanmw.top/tags/%E6%97%A5%E5%BF%97%EF%BC%8Clogback/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot 2.x 整合 UidGenerator</title>
-    <link href="https://xiayutian11.github.io/archives/1f43d92b.html"/>
-    <id>https://xiayutian11.github.io/archives/1f43d92b.html</id>
+    <link href="tanmw.top/archives/1f43d92b.html"/>
+    <id>tanmw.top/archives/1f43d92b.html</id>
     <published>2020-10-15T13:02:24.000Z</published>
     <updated>2020-10-15T13:36:46.072Z</updated>
     
@@ -101,20 +101,20 @@
     
     
     
-    <category term="SpringBoot" scheme="https://xiayutian11.github.io/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="tanmw.top/tags/SpringBoot/"/>
     
-    <category term="UidGenerator" scheme="https://xiayutian11.github.io/tags/UidGenerator/"/>
+    <category term="UidGenerator" scheme="tanmw.top/tags/UidGenerator/"/>
     
-    <category term="分布式" scheme="https://xiayutian11.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    <category term="分布式" scheme="tanmw.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
-    <category term="分布式ID" scheme="https://xiayutian11.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8FID/"/>
+    <category term="分布式ID" scheme="tanmw.top/tags/%E5%88%86%E5%B8%83%E5%BC%8FID/"/>
     
   </entry>
   
   <entry>
     <title>分布式 ID 方案 --SnowFlake（雪花算法）</title>
-    <link href="https://xiayutian11.github.io/archives/8b811d4f.html"/>
-    <id>https://xiayutian11.github.io/archives/8b811d4f.html</id>
+    <link href="tanmw.top/archives/8b811d4f.html"/>
+    <id>tanmw.top/archives/8b811d4f.html</id>
     <published>2020-10-14T13:11:49.000Z</published>
     <updated>2020-10-15T12:40:03.982Z</updated>
     
@@ -126,16 +126,16 @@
     
     
     
-    <category term="分布式ID" scheme="https://xiayutian11.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8FID/"/>
+    <category term="分布式ID" scheme="tanmw.top/tags/%E5%88%86%E5%B8%83%E5%BC%8FID/"/>
     
-    <category term="SnowFlake" scheme="https://xiayutian11.github.io/tags/SnowFlake/"/>
+    <category term="SnowFlake" scheme="tanmw.top/tags/SnowFlake/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot logback.xml 读取 yml 中配置</title>
-    <link href="https://xiayutian11.github.io/archives/cc464ebf.html"/>
-    <id>https://xiayutian11.github.io/archives/cc464ebf.html</id>
+    <link href="tanmw.top/archives/cc464ebf.html"/>
+    <id>tanmw.top/archives/cc464ebf.html</id>
     <published>2020-09-10T10:52:21.000Z</published>
     <updated>2020-10-14T13:16:03.101Z</updated>
     
@@ -147,16 +147,16 @@
     
     
     
-    <category term="SpringBoot" scheme="https://xiayutian11.github.io/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="tanmw.top/tags/SpringBoot/"/>
     
-    <category term="logback" scheme="https://xiayutian11.github.io/tags/logback/"/>
+    <category term="logback" scheme="tanmw.top/tags/logback/"/>
     
   </entry>
   
   <entry>
     <title>ServiceLoader (SPI)</title>
-    <link href="https://xiayutian11.github.io/archives/c575efb2.html"/>
-    <id>https://xiayutian11.github.io/archives/c575efb2.html</id>
+    <link href="tanmw.top/archives/c575efb2.html"/>
+    <id>tanmw.top/archives/c575efb2.html</id>
     <published>2020-09-09T11:25:44.000Z</published>
     <updated>2020-10-14T13:16:22.650Z</updated>
     
@@ -169,16 +169,16 @@
     
     
     
-    <category term="Jdk" scheme="https://xiayutian11.github.io/tags/Jdk/"/>
+    <category term="Jdk" scheme="tanmw.top/tags/Jdk/"/>
     
-    <category term="SPI" scheme="https://xiayutian11.github.io/tags/SPI/"/>
+    <category term="SPI" scheme="tanmw.top/tags/SPI/"/>
     
   </entry>
   
   <entry>
     <title>InputStream 中文乱码</title>
-    <link href="https://xiayutian11.github.io/archives/fe88a97f.html"/>
-    <id>https://xiayutian11.github.io/archives/fe88a97f.html</id>
+    <link href="tanmw.top/archives/fe88a97f.html"/>
+    <id>tanmw.top/archives/fe88a97f.html</id>
     <published>2020-09-07T11:32:35.000Z</published>
     <updated>2020-10-14T13:16:58.288Z</updated>
     
@@ -190,16 +190,16 @@
     
     
     
-    <category term="IO" scheme="https://xiayutian11.github.io/tags/IO/"/>
+    <category term="IO" scheme="tanmw.top/tags/IO/"/>
     
-    <category term="中文乱码" scheme="https://xiayutian11.github.io/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    <category term="中文乱码" scheme="tanmw.top/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot 分离资源文件打包及部署脚本</title>
-    <link href="https://xiayutian11.github.io/archives/1f0b7068.html"/>
-    <id>https://xiayutian11.github.io/archives/1f0b7068.html</id>
+    <link href="tanmw.top/archives/1f0b7068.html"/>
+    <id>tanmw.top/archives/1f0b7068.html</id>
     <published>2020-09-04T11:24:30.000Z</published>
     <updated>2020-09-10T10:52:20.665Z</updated>
     
@@ -211,14 +211,14 @@
     
     
     
-    <category term="SpringBoot" scheme="https://xiayutian11.github.io/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="tanmw.top/tags/SpringBoot/"/>
     
   </entry>
   
   <entry>
     <title>ActiveMQ Connection Parameters</title>
-    <link href="https://xiayutian11.github.io/archives/75c25f59.html"/>
-    <id>https://xiayutian11.github.io/archives/75c25f59.html</id>
+    <link href="tanmw.top/archives/75c25f59.html"/>
+    <id>tanmw.top/archives/75c25f59.html</id>
     <published>2020-09-02T06:36:19.000Z</published>
     <updated>2020-10-14T13:17:21.850Z</updated>
     
@@ -230,16 +230,16 @@
     
     
     
-    <category term="MQ" scheme="https://xiayutian11.github.io/tags/MQ/"/>
+    <category term="MQ" scheme="tanmw.top/tags/MQ/"/>
     
-    <category term="ActiveMQ" scheme="https://xiayutian11.github.io/tags/ActiveMQ/"/>
+    <category term="ActiveMQ" scheme="tanmw.top/tags/ActiveMQ/"/>
     
   </entry>
   
   <entry>
     <title>PostgreSQL Logical Replication (逻辑复制)</title>
-    <link href="https://xiayutian11.github.io/archives/8c55eb1b.html"/>
-    <id>https://xiayutian11.github.io/archives/8c55eb1b.html</id>
+    <link href="tanmw.top/archives/8c55eb1b.html"/>
+    <id>tanmw.top/archives/8c55eb1b.html</id>
     <published>2020-08-28T12:37:19.000Z</published>
     <updated>2020-10-14T13:16:36.860Z</updated>
     
@@ -251,7 +251,7 @@
     
     
     
-    <category term="PostgreSQL" scheme="https://xiayutian11.github.io/tags/PostgreSQL/"/>
+    <category term="PostgreSQL" scheme="tanmw.top/tags/PostgreSQL/"/>
     
   </entry>
   
