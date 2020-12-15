@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git 项目初始化并提交远程仓库</title>
+    <url>/archives/456ca0f7.html</url>
+    <content><![CDATA[<p>​        在日常开发中经常用 Git 进行代码管理，通常在本地写完代码后需要提交到远程仓库，但是由于第一次关联的时候，可能本地与远程仓库的代码不一致，导致初次提交失败，在此记录下解决方案。</p>
+<a id="more"></a>
+
+<h5 id="1- 新建远程仓库，获得仓库地址"><a href="#1- 新建远程仓库，获得仓库地址" class="headerlink" title="1. 新建远程仓库，获得仓库地址"></a>1. 新建远程仓库，获得仓库地址 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">https://github.com/xiaYuTian11/learning_demo.git</span><br></pre></td></tr></table></figure>
+
+<h5 id="2- 初始化本地仓库"><a href="#2- 初始化本地仓库" class="headerlink" title="2. 初始化本地仓库"></a>2. 初始化本地仓库 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<h5 id="3- 将忽略文件添加到 -gitignore"><a href="#3- 将忽略文件添加到 -gitignore" class="headerlink" title="3. 将忽略文件添加到 ==.gitignore=="></a>3. 将忽略文件添加到 ==.gitignore==</h5><h5 id="4- 添加需要版本控制的文件"><a href="#4- 添加需要版本控制的文件" class="headerlink" title="4. 添加需要版本控制的文件"></a>4. 添加需要版本控制的文件 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<h5 id="5- 暂存本地代码"><a href="#5- 暂存本地代码" class="headerlink" title="5. 暂存本地代码"></a>5. 暂存本地代码 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot; 提交内容 & quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6- 关联远程仓库地址"><a href="#6- 关联远程仓库地址" class="headerlink" title="6. 关联远程仓库地址"></a>6. 关联远程仓库地址 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git remote add origin https://github.com/xiaYuTian11/learning_demo.git</span><br></pre></td></tr></table></figure>
+
+<h5 id="7- 拉取代码包括历史代码"><a href="#7- 拉取代码包括历史代码" class="headerlink" title="7. 拉取代码包括历史代码"></a>7. 拉取代码包括历史代码 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
+
+<h5 id="8- 推送本地代码到远程仓库"><a href="#8- 推送本地代码到远程仓库" class="headerlink" title="8. 推送本地代码到远程仓库"></a>8. 推送本地代码到远程仓库 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<h5 id="9- 查看提交日志"><a href="#9- 查看提交日志" class="headerlink" title="9. 查看提交日志"></a>9. 查看提交日志 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看提交信息，包括版本号 (如：420717bd175bf65149b90d0bb0d2cf6ff7e353dd)，可用于版本回退 </span></span><br><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="10- 回退到指定版本"><a href="#10- 回退到指定版本" class="headerlink" title="10. 回退到指定版本"></a>10. 回退到指定版本 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 版本号可以只写前几位，Git 会自动去找。也不能只写前一两位，否则会找到多个版本号。</span></span><br><span class="line"><span class="comment"># git reset --hard 420717bd175bf65149b90d0bb0d2cf6ff7e353dd</span></span><br><span class="line"><span class="comment"># []：可写可不写 </span></span><br><span class="line"><span class="comment"># &#123;&#125;：那就必须要在 &#123;&#125; 内给出的选择里选一个。</span></span><br><span class="line"><span class="comment"># &lt;&gt;：表示必选 </span></span><br><span class="line"><span class="comment"># | : 分隔括号或大括号内的语法项目。只能选择一个项目。 </span></span><br><span class="line">git reset --hard  &lt; 版本号 &gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>​     完结㋡㋡ </p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+        <tag>初始化</tag>
+        <tag>远程仓库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ActiveMQ Connection Parameters</title>
     <url>/archives/75c25f59.html</url>
     <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a>背景</h2><p>​          最近项目需要搭建 ActiveMQ 进行消息传输，但是在使用过程中发现与 ActiveMQ 长时间连接，但是没进行消息传输，或者网络波动等情况会造成连接挂掉的情况，由于 ActiveMQ 是支持断线重连机制，在此记录下使用到的几个配置及其中的一个坑。</p>
@@ -45,42 +81,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 项目初始化并提交远程仓库</title>
-    <url>/archives/456ca0f7.html</url>
-    <content><![CDATA[<p>​        在日常开发中经常用 Git 进行代码管理，通常在本地写完代码后需要提交到远程仓库，但是由于第一次关联的时候，可能本地与远程仓库的代码不一致，导致初次提交失败，在此记录下解决方案。</p>
-<a id="more"></a>
-
-<h5 id="1- 新建远程仓库，获得仓库地址"><a href="#1- 新建远程仓库，获得仓库地址" class="headerlink" title="1. 新建远程仓库，获得仓库地址"></a>1. 新建远程仓库，获得仓库地址 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">https://github.com/xiaYuTian11/learning_demo.git</span><br></pre></td></tr></table></figure>
-
-<h5 id="2- 初始化本地仓库"><a href="#2- 初始化本地仓库" class="headerlink" title="2. 初始化本地仓库"></a>2. 初始化本地仓库 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<h5 id="3- 将忽略文件添加到 -gitignore"><a href="#3- 将忽略文件添加到 -gitignore" class="headerlink" title="3. 将忽略文件添加到 ==.gitignore=="></a>3. 将忽略文件添加到 ==.gitignore==</h5><h5 id="4- 添加需要版本控制的文件"><a href="#4- 添加需要版本控制的文件" class="headerlink" title="4. 添加需要版本控制的文件"></a>4. 添加需要版本控制的文件 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-
-<h5 id="5- 暂存本地代码"><a href="#5- 暂存本地代码" class="headerlink" title="5. 暂存本地代码"></a>5. 暂存本地代码 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot; 提交内容 & quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="6- 关联远程仓库地址"><a href="#6- 关联远程仓库地址" class="headerlink" title="6. 关联远程仓库地址"></a>6. 关联远程仓库地址 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git remote add origin https://github.com/xiaYuTian11/learning_demo.git</span><br></pre></td></tr></table></figure>
-
-<h5 id="7- 拉取代码包括历史代码"><a href="#7- 拉取代码包括历史代码" class="headerlink" title="7. 拉取代码包括历史代码"></a>7. 拉取代码包括历史代码 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
-
-<h5 id="8- 推送本地代码到远程仓库"><a href="#8- 推送本地代码到远程仓库" class="headerlink" title="8. 推送本地代码到远程仓库"></a>8. 推送本地代码到远程仓库 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
-<h5 id="9- 查看提交日志"><a href="#9- 查看提交日志" class="headerlink" title="9. 查看提交日志"></a>9. 查看提交日志 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看提交信息，包括版本号 (如：420717bd175bf65149b90d0bb0d2cf6ff7e353dd)，可用于版本回退 </span></span><br><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="10- 回退到指定版本"><a href="#10- 回退到指定版本" class="headerlink" title="10. 回退到指定版本"></a>10. 回退到指定版本 </h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 版本号可以只写前几位，Git 会自动去找。也不能只写前一两位，否则会找到多个版本号。</span></span><br><span class="line"><span class="comment"># git reset --hard 420717bd175bf65149b90d0bb0d2cf6ff7e353dd</span></span><br><span class="line"><span class="comment"># []：可写可不写 </span></span><br><span class="line"><span class="comment"># &#123;&#125;：那就必须要在 &#123;&#125; 内给出的选择里选一个。</span></span><br><span class="line"><span class="comment"># &lt;&gt;：表示必选 </span></span><br><span class="line"><span class="comment"># | : 分隔括号或大括号内的语法项目。只能选择一个项目。 </span></span><br><span class="line">git reset --hard  &lt; 版本号 &gt;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>​     完结㋡㋡ </p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-        <tag>初始化</tag>
-        <tag>远程仓库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>InputStream 中文乱码</title>
     <url>/archives/fe88a97f.html</url>
     <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​        最近进行项目重构，发现之前文件读取重构之后出现数据乱码。最后发现是因为字节流的问题。</p>
@@ -121,50 +121,6 @@
 ]]></content>
       <tags>
         <tag>日志，logback</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PostgreSQL Logical Replication (逻辑复制)</title>
-    <url>/archives/8c55eb1b.html</url>
-    <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a> 概述 </h2><p>​        Postgres 9.4（2014 年 12 月发布）引入了一项称为逻辑复制（Logical Replication）的新功能。逻辑复制允许从数据库实时流式传输到外部系统的更改。物理复制和逻辑复制的区别在于逻辑复制以逻辑格式发送数据，而物理复制以二进制格式发送数据。</p>
-<a id="more"></a>
-
-<p>​        详细介绍查看官方文档：<span class="exturl" data-url="aHR0cHM6Ly9qZGJjLnBvc3RncmVzcWwub3JnL2RvY3VtZW50YXRpb24vaGVhZC9yZXBsaWNhdGlvbi5odG1s">https://jdbc.postgresql.org/documentation/head/replication.html<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        Postgresql 要想使用逻辑复制必须先将 postgresql. conf 中 wal_level 配置为 logical, 相应的 max_wal_senders 复制使用者的数量要合理配置，max_replication_slots 要使用逻辑复制必须大于 0；</p>
-<p><code>postgresql. conf</code></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">wal_level = logical</span><br><span class="line">max_wal_senders = 8</span><br><span class="line">max_replication_slots = 2</span><br></pre></td></tr></table></figure>
-
-<p><code>pg_hba. conf</code></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">local   replication   all                   trust</span><br><span class="line">host    replication   all   127.0.0.1/32    md5</span><br><span class="line">host    replication   all   ::1/128         md5</span><br><span class="line">host	all			  all   0.0.0.0/0		md5  </span><br><span class="line"># 更多配置含义查看：http://shouce.jb51.net/postgresql9_4_4/auth-pg-hba-conf.html</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用"><a href="# 使用" class="headerlink" title="使用"></a> 使用 </h2><p>​          逻辑复制使用复制槽在服务器上保留 WAL 日志，并定义用于将 WAL 日志解码为所需格式的解码插件，例如，您可以将更改解码为 json 等格式。这里方便演示使用 test_decoding 插件进行解码。</p>
-<p>​          更多插件查看：<span class="exturl" data-url="aHR0cHM6Ly93aWtpLnBvc3RncmVzcWwub3JnL3dpa2kvTG9naWNhbF9EZWNvZGluZ19QbHVnaW5z">https://wiki.postgresql.org/wiki/Logical_Decoding_Plugins<i class="fa fa-external-link-alt"></i></span></p>
-<p>** 针对整个数据库的逻辑复制 **</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> <span class="keyword">throws</span> SQLException, InterruptedException </span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/dev&quot;</span>;</span><br><span class="line">        Properties props = <span class="keyword">new</span> Properties ();</span><br><span class="line">        PGProperty.USER.set (props, <span class="string">&quot;postgres&quot;</span>);</span><br><span class="line">        PGProperty.PASSWORD.set (props, <span class="string">&quot;20191809&quot;</span>);</span><br><span class="line">        PGProperty.ASSUME_MIN_SERVER_VERSION.set (props, <span class="string">&quot;9.4&quot;</span>);</span><br><span class="line">        PGProperty.REPLICATION.set (props, <span class="string">&quot;database&quot;</span>);</span><br><span class="line">        PGProperty.PREFER_QUERY_MODE.set (props, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Connection con = DriverManager.getConnection (url, props);</span><br><span class="line">        PGConnection replConnection = con.unwrap (PGConnection.class);</span><br><span class="line">        Statement statement = con.createStatement ();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 删除复制槽 </span></span><br><span class="line">        <span class="comment">//replConnection.getReplicationAPI ().dropReplicationSlot (&quot;demo_logical_slot&quot;);</span></span><br><span class="line">        </span><br><span class="line">    	<span class="comment">// 创建 demo_logical_slot</span></span><br><span class="line">        replConnection.getReplicationAPI ()</span><br><span class="line">                .createReplicationSlot ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withOutputPlugin (<span class="string">&quot;test_decoding&quot;</span>)</span><br><span class="line">                .make ();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建逻辑复制流，设置超时时间 </span></span><br><span class="line">        PGReplicationStream stream = replConnection.getReplicationAPI ()</span><br><span class="line">                .replicationStream ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;include-xids&quot;</span>, <span class="keyword">false</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;skip-empty-xacts&quot;</span>, <span class="keyword">true</span>)</span><br><span class="line">                .withStatusInterval (<span class="number">20</span>, TimeUnit.SECONDS)</span><br><span class="line">                .start ();</span><br><span class="line">        </span><br><span class="line">       <span class="comment">// 更改数据库表数据，这里可以获取数据 </span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">//non blocking receive message</span></span><br><span class="line">            ByteBuffer msg = stream.readPending ();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep (<span class="number">10L</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> offset = msg.arrayOffset ();</span><br><span class="line">            <span class="keyword">byte</span>[] source = msg.array ();</span><br><span class="line">            <span class="keyword">int</span> length = source.length - offset;</span><br><span class="line">            <span class="keyword">final</span> String s = <span class="keyword">new</span> String (source, offset, length);</span><br><span class="line">            System.out.println (s);</span><br><span class="line">            <span class="comment">//feedback</span></span><br><span class="line">            <span class="comment">// 反馈服务器，向服务器提供已成功接收并应用于消费者的日志序列编号 （LSN）</span></span><br><span class="line">            stream.setAppliedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">            stream.setFlushedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>** 只针对指定表的逻辑复制 **</p>
-<p> 步骤：</p>
-<p>1。创建针对表创建订阅，及接收数据的操作类型 </p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> PUBLICATION YOUR_PUBLICATION_NAME) <span class="keyword">FOR</span> <span class="keyword">TABLE</span> YOUR_TABLE_NAME <span class="keyword">WITH</span> (publish = <span class="string">&#x27;insert,update,delete&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>2。设置表同步数据的字段，最后 FULL 参数可变。</p>
-<p> 参照官方文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xMC9zcWwtYWx0ZXJ0YWJsZS5odG1sI1NRTC1DUkVBVEVUQUJMRS1SRVBMSUNBLUlERU5USVRZ">https://www.postgresql.org/docs/10/sql-altertable.html#SQL-CREATETABLE-REPLICA-IDENTITY<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLE_NAME REPLICA <span class="keyword">IDENTITY</span> <span class="keyword">FULL</span></span><br></pre></td></tr></table></figure>
-
-<p>3。创建复制槽 </p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">CREATE_REPLICATION_SLOT  YOUR_SOLT_NAME  有效期  LOGICAL 解码插件名称；</span><br></pre></td></tr></table></figure>
-
-<p>4。获取 PGReplicationStream，同上。</p>
-<p> 详情参照官方文档地址：<span class="exturl" data-url="aHR0cDovL3d3dy5wb3N0Z3Jlcy5jbi9kb2NzLzExL3NxbC1jcmVhdGVwdWJsaWNhdGlvbi5odG1s">http://www.postgres.cn/docs/11/sql-createpublication.html<i class="fa fa-external-link-alt"></i></span></p>
-<p> 解码插件可以参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RlYmV6aXVtL2RlYmV6aXVt">https://github.com/debezium/debezium<i class="fa fa-external-link-alt"></i></span></p>
-<p> 完整代码可以查看： <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL3Bvc3RncmVzcWwtbWVzc2FnZQ==">https://github.com/xiaYuTian11/postgresql-message<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <tags>
-        <tag>PostgreSQL</tag>
       </tags>
   </entry>
   <entry>
@@ -248,6 +204,50 @@
         <tag>远程拷贝，备份，还原，dump</tag>
         <tag>ssh</tag>
         <tag>scp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PostgreSQL Logical Replication (逻辑复制)</title>
+    <url>/archives/8c55eb1b.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a> 概述 </h2><p>​        Postgres 9.4（2014 年 12 月发布）引入了一项称为逻辑复制（Logical Replication）的新功能。逻辑复制允许从数据库实时流式传输到外部系统的更改。物理复制和逻辑复制的区别在于逻辑复制以逻辑格式发送数据，而物理复制以二进制格式发送数据。</p>
+<a id="more"></a>
+
+<p>​        详细介绍查看官方文档：<span class="exturl" data-url="aHR0cHM6Ly9qZGJjLnBvc3RncmVzcWwub3JnL2RvY3VtZW50YXRpb24vaGVhZC9yZXBsaWNhdGlvbi5odG1s">https://jdbc.postgresql.org/documentation/head/replication.html<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        Postgresql 要想使用逻辑复制必须先将 postgresql. conf 中 wal_level 配置为 logical, 相应的 max_wal_senders 复制使用者的数量要合理配置，max_replication_slots 要使用逻辑复制必须大于 0；</p>
+<p><code>postgresql. conf</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">wal_level = logical</span><br><span class="line">max_wal_senders = 8</span><br><span class="line">max_replication_slots = 2</span><br></pre></td></tr></table></figure>
+
+<p><code>pg_hba. conf</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">local   replication   all                   trust</span><br><span class="line">host    replication   all   127.0.0.1/32    md5</span><br><span class="line">host    replication   all   ::1/128         md5</span><br><span class="line">host	all			  all   0.0.0.0/0		md5  </span><br><span class="line"># 更多配置含义查看：http://shouce.jb51.net/postgresql9_4_4/auth-pg-hba-conf.html</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用"><a href="# 使用" class="headerlink" title="使用"></a> 使用 </h2><p>​          逻辑复制使用复制槽在服务器上保留 WAL 日志，并定义用于将 WAL 日志解码为所需格式的解码插件，例如，您可以将更改解码为 json 等格式。这里方便演示使用 test_decoding 插件进行解码。</p>
+<p>​          更多插件查看：<span class="exturl" data-url="aHR0cHM6Ly93aWtpLnBvc3RncmVzcWwub3JnL3dpa2kvTG9naWNhbF9EZWNvZGluZ19QbHVnaW5z">https://wiki.postgresql.org/wiki/Logical_Decoding_Plugins<i class="fa fa-external-link-alt"></i></span></p>
+<p>** 针对整个数据库的逻辑复制 **</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> <span class="keyword">throws</span> SQLException, InterruptedException </span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/dev&quot;</span>;</span><br><span class="line">        Properties props = <span class="keyword">new</span> Properties ();</span><br><span class="line">        PGProperty.USER.set (props, <span class="string">&quot;postgres&quot;</span>);</span><br><span class="line">        PGProperty.PASSWORD.set (props, <span class="string">&quot;20191809&quot;</span>);</span><br><span class="line">        PGProperty.ASSUME_MIN_SERVER_VERSION.set (props, <span class="string">&quot;9.4&quot;</span>);</span><br><span class="line">        PGProperty.REPLICATION.set (props, <span class="string">&quot;database&quot;</span>);</span><br><span class="line">        PGProperty.PREFER_QUERY_MODE.set (props, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Connection con = DriverManager.getConnection (url, props);</span><br><span class="line">        PGConnection replConnection = con.unwrap (PGConnection.class);</span><br><span class="line">        Statement statement = con.createStatement ();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 删除复制槽 </span></span><br><span class="line">        <span class="comment">//replConnection.getReplicationAPI ().dropReplicationSlot (&quot;demo_logical_slot&quot;);</span></span><br><span class="line">        </span><br><span class="line">    	<span class="comment">// 创建 demo_logical_slot</span></span><br><span class="line">        replConnection.getReplicationAPI ()</span><br><span class="line">                .createReplicationSlot ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withOutputPlugin (<span class="string">&quot;test_decoding&quot;</span>)</span><br><span class="line">                .make ();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建逻辑复制流，设置超时时间 </span></span><br><span class="line">        PGReplicationStream stream = replConnection.getReplicationAPI ()</span><br><span class="line">                .replicationStream ()</span><br><span class="line">                .logical ()</span><br><span class="line">                .withSlotName (<span class="string">&quot;demo_logical_slot&quot;</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;include-xids&quot;</span>, <span class="keyword">false</span>)</span><br><span class="line">                .withSlotOption (<span class="string">&quot;skip-empty-xacts&quot;</span>, <span class="keyword">true</span>)</span><br><span class="line">                .withStatusInterval (<span class="number">20</span>, TimeUnit.SECONDS)</span><br><span class="line">                .start ();</span><br><span class="line">        </span><br><span class="line">       <span class="comment">// 更改数据库表数据，这里可以获取数据 </span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">//non blocking receive message</span></span><br><span class="line">            ByteBuffer msg = stream.readPending ();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep (<span class="number">10L</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> offset = msg.arrayOffset ();</span><br><span class="line">            <span class="keyword">byte</span>[] source = msg.array ();</span><br><span class="line">            <span class="keyword">int</span> length = source.length - offset;</span><br><span class="line">            <span class="keyword">final</span> String s = <span class="keyword">new</span> String (source, offset, length);</span><br><span class="line">            System.out.println (s);</span><br><span class="line">            <span class="comment">//feedback</span></span><br><span class="line">            <span class="comment">// 反馈服务器，向服务器提供已成功接收并应用于消费者的日志序列编号 （LSN）</span></span><br><span class="line">            stream.setAppliedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">            stream.setFlushedLSN (stream.getLastReceiveLSN ());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>** 只针对指定表的逻辑复制 **</p>
+<p> 步骤：</p>
+<p>1。创建针对表创建订阅，及接收数据的操作类型 </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> PUBLICATION YOUR_PUBLICATION_NAME) <span class="keyword">FOR</span> <span class="keyword">TABLE</span> YOUR_TABLE_NAME <span class="keyword">WITH</span> (publish = <span class="string">&#x27;insert,update,delete&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>2。设置表同步数据的字段，最后 FULL 参数可变。</p>
+<p> 参照官方文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xMC9zcWwtYWx0ZXJ0YWJsZS5odG1sI1NRTC1DUkVBVEVUQUJMRS1SRVBMSUNBLUlERU5USVRZ">https://www.postgresql.org/docs/10/sql-altertable.html#SQL-CREATETABLE-REPLICA-IDENTITY<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLE_NAME REPLICA <span class="keyword">IDENTITY</span> <span class="keyword">FULL</span></span><br></pre></td></tr></table></figure>
+
+<p>3。创建复制槽 </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">CREATE_REPLICATION_SLOT  YOUR_SOLT_NAME  有效期  LOGICAL 解码插件名称；</span><br></pre></td></tr></table></figure>
+
+<p>4。获取 PGReplicationStream，同上。</p>
+<p> 详情参照官方文档地址：<span class="exturl" data-url="aHR0cDovL3d3dy5wb3N0Z3Jlcy5jbi9kb2NzLzExL3NxbC1jcmVhdGVwdWJsaWNhdGlvbi5odG1s">http://www.postgres.cn/docs/11/sql-createpublication.html<i class="fa fa-external-link-alt"></i></span></p>
+<p> 解码插件可以参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RlYmV6aXVtL2RlYmV6aXVt">https://github.com/debezium/debezium<i class="fa fa-external-link-alt"></i></span></p>
+<p> 完整代码可以查看： <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYVl1VGlhbjExL3Bvc3RncmVzcWwtbWVzc2FnZQ==">https://github.com/xiaYuTian11/postgresql-message<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <tags>
+        <tag>PostgreSQL</tag>
       </tags>
   </entry>
   <entry>
@@ -366,6 +366,30 @@
       </tags>
   </entry>
   <entry>
+    <title>Spring Boot logback.xml 读取 yml 中配置</title>
+    <url>/archives/cc464ebf.html</url>
+    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​            最近部署 Spring Boot 项目时发现在 logback.xml 中配置的日志存放路径为相对路径，导致我以不同的方式启动项目时，日志文件生成的目录是不一致的，所以决定将 logback.xml 中的日志文件存放路径改为相对路径，但是在使用中发现 logback.xml 不能读取到 yml 中的属性。</p>
+<a id="more"></a>
+
+<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        由于 Spring Boot 时加载顺序是先加载 logback.xml, 在加载 application.yml, 最后在加载 logback-spring.xml 文件。所以直接在 logback.xml 中配置读取 yml 是不行的。下面说下解决方案。</p>
+<h3 id="1- 在 -yml- 文件中配置日志存放路径"><a href="#1- 在 -yml- 文件中配置日志存放路径" class="headerlink" title="1. 在 yml 文件中配置日志存放路径"></a>1. 在 yml 文件中配置日志存放路径 </h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">log:</span></span><br><span class="line">  <span class="attr">file:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/usr/soft/test/logs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2- 将 -logback-xml- 名称改为 -logback-spring-xml"><a href="#2- 将 -logback-xml- 名称改为 -logback-spring-xml" class="headerlink" title="2. 将 logback.xml 名称改为 logback-spring.xml"></a>2. 将 logback.xml 名称改为 logback-spring.xml</h3><h3 id="3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置"><a href="#3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置" class="headerlink" title="3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置"></a>3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">&quot;context&quot;</span> <span class="attr">name</span>=<span class="string">&quot;logPath&quot;</span> <span class="attr">source</span>=<span class="string">&quot;log.file.path&quot;</span> <span class="attr">defaultValue</span>=<span class="string">&quot;logs&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4- 使用配置"><a href="#4- 使用配置" class="headerlink" title="4. 使用配置"></a>4. 使用配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;logPath&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>​        配置完成后，部署时就可以在启动前修改 application.yml 文件中的相关配置，达到自定义的目的。</p>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>logback</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring Boot 分离资源文件打包及部署脚本</title>
     <url>/archives/1f0b7068.html</url>
     <content><![CDATA[<h2 id="概述"><a href="# 概述" class="headerlink" title="概述"></a> 概述 </h2><p>​            Spring Boot 项目打包默认会将资源文件一起打包，如果涉及到现场部署会不停的更改相关配置就会很烦，所以可以采用将配置文件及相关依赖分离出来。</p>
@@ -420,30 +444,6 @@
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring Boot logback.xml 读取 yml 中配置</title>
-    <url>/archives/cc464ebf.html</url>
-    <content><![CDATA[<h2 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h2><p>​            最近部署 Spring Boot 项目时发现在 logback.xml 中配置的日志存放路径为相对路径，导致我以不同的方式启动项目时，日志文件生成的目录是不一致的，所以决定将 logback.xml 中的日志文件存放路径改为相对路径，但是在使用中发现 logback.xml 不能读取到 yml 中的属性。</p>
-<a id="more"></a>
-
-<h2 id="配置"><a href="# 配置" class="headerlink" title="配置"></a> 配置 </h2><p>​        由于 Spring Boot 时加载顺序是先加载 logback.xml, 在加载 application.yml, 最后在加载 logback-spring.xml 文件。所以直接在 logback.xml 中配置读取 yml 是不行的。下面说下解决方案。</p>
-<h3 id="1- 在 -yml- 文件中配置日志存放路径"><a href="#1- 在 -yml- 文件中配置日志存放路径" class="headerlink" title="1. 在 yml 文件中配置日志存放路径"></a>1. 在 yml 文件中配置日志存放路径 </h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">log:</span></span><br><span class="line">  <span class="attr">file:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/usr/soft/test/logs</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2- 将 -logback-xml- 名称改为 -logback-spring-xml"><a href="#2- 将 -logback-xml- 名称改为 -logback-spring-xml" class="headerlink" title="2. 将 logback.xml 名称改为 logback-spring.xml"></a>2. 将 logback.xml 名称改为 logback-spring.xml</h3><h3 id="3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置"><a href="#3- 在 -logback-spring-xml- 加入 -spring- 属性读取 -yml- 配置" class="headerlink" title="3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置"></a>3. 在 logback-spring.xml 加入 spring 属性读取 yml 配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">&quot;context&quot;</span> <span class="attr">name</span>=<span class="string">&quot;logPath&quot;</span> <span class="attr">source</span>=<span class="string">&quot;log.file.path&quot;</span> <span class="attr">defaultValue</span>=<span class="string">&quot;logs&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4- 使用配置"><a href="#4- 使用配置" class="headerlink" title="4. 使用配置"></a>4. 使用配置 </h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;logPath&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>​        配置完成后，部署时就可以在启动前修改 application.yml 文件中的相关配置，达到自定义的目的。</p>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-        <tag>logback</tag>
       </tags>
   </entry>
   <entry>
