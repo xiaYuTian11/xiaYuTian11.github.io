@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xiayutian11.github.io/baidu_verify_code-bCauUmWdEB.html</loc>
+    <loc>https://xiayutian11.github.io/baidu_verify_code-XAxIyGegu7.html</loc>
     
     <lastmod>2020-12-15</lastmod>
     
@@ -144,6 +144,13 @@
   </url>
   
   <url>
+    <loc>https://xiayutian11.github.io/tags/PostgreSQL/</loc>
+    <lastmod>2020-12-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xiayutian11.github.io/tags/IO/</loc>
     <lastmod>2020-12-15</lastmod>
     <changefreq>daily</changefreq>
@@ -159,13 +166,6 @@
   
   <url>
     <loc>https://xiayutian11.github.io/tags/%E6%97%A5%E5%BF%97%EF%BC%8Clogback/</loc>
-    <lastmod>2020-12-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiayutian11.github.io/tags/PostgreSQL/</loc>
     <lastmod>2020-12-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
