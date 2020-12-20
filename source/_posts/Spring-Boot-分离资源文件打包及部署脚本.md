@@ -194,8 +194,9 @@ java -jar -Xms512m -Xmx2048m -Dloader.path=lib,resources test.jar
 
 ### deploy.sh
 
-```xml
+```sh
 #!/bin/bash
+# 自定义jdk路径
 #JDK_HOME="/usr/software/java/jdk1.8.0_212/bin/java"
 VM_OPTS="-Xms512m -Xmx2048m"
 SPB_OPTS=" -Dloader.path=lib,config"
