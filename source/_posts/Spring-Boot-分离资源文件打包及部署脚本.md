@@ -196,102 +196,83 @@ java -jar -Xms512m -Xmx2048m -Dloader.path=lib,resources test.jar
 
 ```sh
 #!/bin/bash
-# 自定义jdk路径
-#JDK_HOME="/usr/software/java/jdk1.8.0_212/bin/java"
 VM_OPTS="-Xms512m -Xmx2048m"
 SPB_OPTS=" -Dloader.path=lib,config"
-APP_LOCATION="/home/qrcode-v0.0.1.jar"
-APP_NAME="qrcode-v0.0.1.jar"
+#替换jar包路径及文件
+APP_LOCATION="/tmw/honeypot/"
+APP_NAME="honeypot-v0.1.0.jar"
+#使用说明,用来提示输入参数
+usage() {
+  echo "Usage: sh 执行脚本.sh [start|stop|restart|status]"
+  exit 1
+}
+#检查程序是否在运行
+is_exist() {
+  pid=$(ps -ef | grep $APP_NAME | grep -v grep | awk '{print $2}')
+  #如果不存在返回1,存在返回0
+  if [ -z "${pid}" ]; then
+    return 1
+  else
+    return 0
+  fi
+}
 
+#启动方法
 start() {
- echo "=============================start=============================="
- PID_CMD="ps -ef |grep $APP_NAME |grep -v grep |awk '{print $2}'"
- PID=$(eval $PID_CMD)
- if [[ -n $PID ]]; then
-    echo "$APP_NAME is already running,PID is $PID"
- else
-    nohup java $VM_OPTS -jar $APP_LOCATION $SPB_OPTS > /dev/null 2>&1 &
-    echo "nohup java $VM_OPTS -jar $APP_LOCATION $SPB_OPTS > /dev/null 2>&1 &"
-    echo "Start $APP_NAME successfully!" 
- fi  
- echo "=============================start=============================="
+  is_exist
+  if [ $? -eq "0" ]; then
+    echo "${APP_NAME} is already running. pid=${pid} ."
+  else
+    nohup java $VM_OPTS -jar $APP_LOCATION$APP_NAME $SPB_OPTS >/dev/null 2>&1 &
+    echo "${APP_NAME} start success. pid=${pid} ."
+  fi
 }
 
+#停止方法
 stop() {
- echo "=============================stop=============================="
- PID=$(eval ps -ef |grep $APP_NAME |grep -v grep |awk '{print $2}')
- if [[ -n $PID ]]; then
-    kill -9 $PID
-    echo "$APP_NAME is stop in PID $PID"
-    sleep 1 
- else
-    echo "$APP_NAME is not running!!!"
- fi
- echo "=============================stop=============================="
+  is_exist
+  if [ $? -eq "0" ]; then
+    kill -9 $pid
+    echo "${APP_NAME} stop success. pid=${pid} ."
+  else
+    echo "${APP_NAME} is not running"
+  fi
 }
 
+#输出运行状态
+status() {
+  is_exist
+  if [ $? -eq "0" ]; then
+    echo "${APP_NAME} is running. Pid is ${pid}"
+  else
+    echo "${APP_NAME} is NOT running."
+  fi
+}
+#重启
 restart() {
-  echo "=============================restart=============================="
   stop
   start
-  echo "=============================restart=============================="
 }
 
-status() {
-  echo "=============================status==============================" 
-  PID_CMD="ps -ef |grep $APP_NAME |grep -v grep |awk '{print $2}'"
-  PID=$(eval $PID_CMD)
-  if [[ -n $PID ]]; then
-       echo "$APP_NAME is running,PID is $PID"
-  else
-       echo "$APP_NAME is not running!!!"
-  fi
-  echo "=============================status=============================="
-}
-
-info() {
-  echo "=============================info=============================="
-  echo "APP_LOCATION: $APP_LOCATION"
-  echo "APP_NAME: $APP_NAME"
-  echo "JDK_HOME: $JDK_HOME"
-  echo "VM_OPTS: $VM_OPTS"
-  echo "SPB_OPTS: $SPB_OPTS"
-  echo "=============================info=============================="
-}
-
-help() {
-   echo "start: start server"
-   echo "stop: shutdown server"
-   echo "restart: restart server"
-   echo "status: display status of server"
-   echo "info: display info of server"
-   echo "help: help info"
-}
-
-case $1 in
-start)
-    start
-    ;;
-stop)
-    stop
-    ;;
-restart)
-    restart
-    ;;
-status)
-    status
-    ;;
-info)
-    info
-    ;;
-help)
-    help
-    ;;
+#根据输入参数,选择执行对应方法,不输入则执行使用说明
+case "$1" in
+"start")
+  start
+  ;;
+"stop")
+  stop
+  ;;
+"status")
+  status
+  ;;
+"restart")
+  restart
+  ;;
 *)
-    help
-    ;;
+  usage
+  ;;
 esac
-exit $?
+
 
 
 ```
