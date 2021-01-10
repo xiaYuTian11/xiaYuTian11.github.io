@@ -33,6 +33,8 @@
     "hexo-server": "^2.0.0",
     "hexo-service-worker": "^1.0.1",
     "hexo-symbols-count-time": "^0.7.1",
-    "hexo-wordcount": "^6.0.1"
+    "hexo-wordcount": "^6.0.1",
+	"request": "latest",
+	"cheerio": "latest"
   }
 }
