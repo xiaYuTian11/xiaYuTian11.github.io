@@ -56,6 +56,8 @@ comments: false
     > [2020 IntelliJ IDEA 破解](https://tech.souyunku.com/?p=16189)
     >
     > [IDEA 激活码](http://idea.medeming.com/jets/)
+    >
+    > [IDEA2021.3以上破解](https://springboot.io/t/topic/4592)
 
 
 
