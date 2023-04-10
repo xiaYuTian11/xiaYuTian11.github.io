@@ -1,0 +1,7 @@
+预览
+npm run preview
+发布
+npm run deploy
+
+新建文章
+hexo new [layout] <title>
