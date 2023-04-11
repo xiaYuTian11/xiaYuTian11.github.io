@@ -1,3 +1,16 @@
+重装hexo
+npm uninstall hexo
+npm install hexo --no-optional
+
+重装hexo-cli
+npm uninstall hexo-cli -g
+npm install hexo-cli -g
+
+
+报错：YAMLException: Specified list of YAML types (or a single Type object) contains a non-Type object.
+解决方法是重装npm i hexo@6.0.0
+
+
 预览
 npm run preview
 发布
