@@ -134,7 +134,6 @@ menu_settings:
   icons: true
   badges: true
 
-auto_spacing: false
 # ---------------------------------------------------------------
 # Sidebar Settings
 # See: https://theme-next.org/docs/theme-settings/sidebar
