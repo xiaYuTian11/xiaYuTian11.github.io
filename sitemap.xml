@@ -179,20 +179,6 @@
   </url>
   
   <url>
-    <loc>http://tanmw.top/tags/IO/</loc>
-    <lastmod>2023-04-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tanmw.top/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</loc>
-    <lastmod>2023-04-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://tanmw.top/tags/Java/</loc>
     <lastmod>2023-04-11</lastmod>
     <changefreq>daily</changefreq>
@@ -214,7 +200,14 @@
   </url>
   
   <url>
-    <loc>http://tanmw.top/tags/PostgreSQL/</loc>
+    <loc>http://tanmw.top/tags/IO/</loc>
+    <lastmod>2023-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tanmw.top/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</loc>
     <lastmod>2023-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -222,6 +215,13 @@
   
   <url>
     <loc>http://tanmw.top/tags/%E6%97%A5%E5%BF%97%EF%BC%8Clogback/</loc>
+    <lastmod>2023-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tanmw.top/tags/PostgreSQL/</loc>
     <lastmod>2023-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
