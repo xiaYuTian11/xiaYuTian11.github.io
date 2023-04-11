@@ -18,3 +18,6 @@ npm run deploy
 
 新建文章
 hexo new [layout] <title>
+
+新建菜单
+hexo new page [layout] <title>
