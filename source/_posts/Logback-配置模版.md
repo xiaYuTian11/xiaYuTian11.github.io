@@ -27,7 +27,7 @@ date: 2020-11-01 22:20:38
 
 ## 配置
 
-​	logback.xml   自用配置模版 %date{yyyy-MM-dd HH:mm:ss} 
+​	logback.xml   自用配置模版
 
 ```java
 <?xml version="1.0" encoding="UTF-8"?>
